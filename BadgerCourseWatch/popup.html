@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Badger Course Watch</h1>
+    
+    <div class="tabs">
+      <button id="tab-watch" class="active">Watchlist</button>
+      <button id="tab-search">Search & Add</button>
+    </div>
+
+    <div id="view-watch" class="view active">
+      <div id="watchlist-container">
+        <p class="empty-msg">No courses being watched.</p>
+      </div>
+    </div>
+
+    <div id="view-search" class="view hidden">
+      <div class="form-group">
+        <label>Term:</label>
+        <select id="search-term"></select>
+      </div>
+      <div class="form-group">
+        <label>Subject:</label>
+        <select id="search-subject"></select>
+      </div>
+      <div class="form-group">
+        <label>Keyword (e.g. 506):</label>
+        <input type="text" id="search-keyword" placeholder="Course Number">
+      </div>
+      <button id="btn-search">Search Courses</button>
+
+      <div id="search-results"></div>
+      <div id="section-results" class="hidden">
+        <h3>Select Sections:</h3>
+        <div id="section-list"></div>
+        <button id="btn-add-watch" class="secondary">Add Selected to Watchlist</button>
+        <button id="btn-back" class="text-btn">Back to Results</button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span id="status-msg"></span>
+    </div>
+  </div>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
