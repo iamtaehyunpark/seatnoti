@@ -28,7 +28,6 @@ function populateDropdowns() {
     termSelect.appendChild(opt);
   });
 
-  // "All Subjects" option
   const defaultOpt = document.createElement('option');
   defaultOpt.value = ""; 
   defaultOpt.textContent = "All Subjects (None)";
@@ -92,14 +91,10 @@ async function performSearch() {
   const keyword = document.getElementById('search-keyword').value;
   const statusMsg = document.getElementById('status-msg');
 
-  // REMOVED: The check that required keyword to be present.
-  // Now you can search with an empty keyword.
-
   statusMsg.textContent = "Searching...";
   searchResultsDiv.innerHTML = '';
   sectionResultsDiv.classList.add('hidden');
 
-  // Logic to make filter "unwork" when None is selected
   const filters = [];
   if (subject) { 
     filters.push({ term: { "subject.subjectCode": subject } });
@@ -108,7 +103,7 @@ async function performSearch() {
   try {
     const payload = {
       selectedTerm: term,
-      queryString: keyword, // Can be empty string now
+      queryString: keyword, 
       filters: filters, 
       page: 1,
       pageSize: 50,
@@ -209,7 +204,7 @@ function renderSections(packages) {
 
     if (!targetSec) return;
 
-    // Extract Meetings Info
+    // --- EXTRACT MEETING INFO ---
     let meetingInfo = '<span style="color:#666; font-style:italic;">No meeting time</span>';
     
     if (targetSec.classMeetings && targetSec.classMeetings.length > 0) {
@@ -219,11 +214,12 @@ function renderSections(packages) {
             meetingInfo = meetings.map(m => {
                 const days = m.meetingDays || '';
                 const time = `${formatTime(m.meetingTimeStart)} - ${formatTime(m.meetingTimeEnd)}`;
-                const dates = `${formatDate(m.startDate)} to ${formatDate(m.endDate)}`;
-                return `<div>${days} ${time}<br><span style="font-size:0.85em; color:#888;">${dates}</span></div>`;
+                //const dates = `${formatDate(m.startDate)} to ${formatDate(m.endDate)}`;
+                return `<div>${days} ${time}<br></div>`; // <span style="font-size:0.85em; color:#888;">${dates}</span></div>`;
             }).join('');
         }
     }
+    // ----------------------------
 
     const enrollment = targetSec.enrollmentStatus;
     const seats = enrollment.openSeats;
@@ -239,6 +235,7 @@ function renderSections(packages) {
     const row = document.createElement('div');
     row.className = 'section-row';
     
+    // We use encodeURIComponent to safely store the HTML string in a data attribute
     row.innerHTML = `
       <label>
         <input type="checkbox" 
@@ -246,7 +243,8 @@ function renderSections(packages) {
                data-section="${targetSec.sectionNumber}" 
                data-type="${targetSec.type}"
                data-status="${status}" 
-               data-seats="${seats}">
+               data-seats="${seats}"
+               data-meetings="${encodeURIComponent(meetingInfo)}"> 
         <div class="section-details">
           <strong>${targetSec.type} ${targetSec.sectionNumber}</strong><br>
           ${meetingInfo}
@@ -276,6 +274,10 @@ function addToWatchlist() {
 
       const sectionNum = cb.getAttribute('data-section');
       const sectionType = cb.getAttribute('data-type');
+      
+      // Decode the stored HTML string for meetings
+      const meetingsHtml = decodeURIComponent(cb.getAttribute('data-meetings'));
+
       const uniqueId = `${currentSelectedCourse.termCode}-${cb.value}`; 
 
       if (!watchlist.find(item => item.uniqueId === uniqueId)) {
@@ -287,9 +289,11 @@ function addToWatchlist() {
           courseName: currentSelectedCourse.courseName,
           sectionNumber: sectionNum,
           sectionType: sectionType,
+          meetingDetails: meetingsHtml, // Save it to storage
           lastStatus: cb.getAttribute('data-status'),
           lastSeats: cb.getAttribute('data-seats'),
-          enrollmentClassNumber: parseInt(cb.value) 
+          enrollmentClassNumber: parseInt(cb.value),
+          isMuted: false 
         });
         addedCount++;
       }
@@ -298,6 +302,7 @@ function addToWatchlist() {
     chrome.storage.local.set({ watchlist }, () => {
       document.getElementById('status-msg').textContent = `Added ${addedCount} sections.`;
       switchView('watch');
+      chrome.runtime.sendMessage({ action: "CHECK_NOW" });
     });
   });
 }
@@ -316,19 +321,34 @@ function loadWatchlist() {
 
     watchlist.forEach(item => {
       const div = document.createElement('div');
-      div.className = 'watch-item';
+      div.className = `watch-item ${item.isMuted ? 'muted' : ''}`;
+      
+      const muteIcon = item.isMuted ? '🔕' : '🔔';
+      const muteTitle = item.isMuted ? 'Unmute alerts' : 'Mute alerts';
+
       div.innerHTML = `
         <div class="watch-info">
           <h4>${item.courseName}</h4>
           <strong>${item.sectionType || 'Sec'} ${item.sectionNumber}</strong>
-          <p>Seats: ${item.lastSeats}</p>
+          <div style="font-size: 11px; color: #555; margin-top: 2px; line-height: 1.3;">
+            ${item.meetingDetails || ''}
+          </div>
+          <p style="margin-top:4px;">Seats: ${item.lastSeats}</p>
         </div>
         <div style="text-align:right;">
            <span class="status-badge status-${item.lastStatus}">${item.lastStatus}</span>
-           <button class="btn-delete">✕</button>
+           <div style="margin-top: 5px;">
+             <button class="btn-icon btn-mute" title="${muteTitle}">${muteIcon}</button>
+             <button class="btn-icon btn-delete" title="Remove">✕</button>
+           </div>
         </div>
       `;
       
+      div.querySelector('.btn-mute').addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMute(item.uniqueId);
+      });
+
       div.querySelector('.btn-delete').addEventListener('click', (e) => {
         e.stopPropagation();
         removeFromWatchlist(item.uniqueId);
@@ -336,6 +356,18 @@ function loadWatchlist() {
 
       container.appendChild(div);
     });
+  });
+}
+
+function toggleMute(uniqueId) {
+  chrome.storage.local.get(['watchlist'], (result) => {
+    const watchlist = result.watchlist || [];
+    const itemIndex = watchlist.findIndex(i => i.uniqueId === uniqueId);
+    
+    if (itemIndex > -1) {
+      watchlist[itemIndex].isMuted = !watchlist[itemIndex].isMuted;
+      chrome.storage.local.set({ watchlist }, loadWatchlist);
+    }
   });
 }
 

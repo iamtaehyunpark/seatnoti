@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Badger Course Watch - Setup</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; text-align: center; padding: 50px; max-width: 600px; margin: 0 auto; }
+        h1 { color: #c5050c; }
+        .step { background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #ddd; margin: 20px 0; }
+        button { background: #c5050c; color: white; border: none; padding: 12px 24px; font-size: 16px; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #9b0000; }
+        .note { color: #666; font-size: 14px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Installation Complete!</h1>
+    <p>Badger is now watching for open seats.</p>
+
+    <div class="step">
+        <h2>Important: Test Your Alerts</h2>
+        <p>If your computer is on <strong>"Do Not Disturb"</strong> or <strong>"Focus Mode"</strong>, you will miss course openings.</p>
+        <p>Also check if your system allows Chrome notification.</p>        
+        <p>Click the button below. You MUST see a notification banner appear.</p>
+        
+        <button id="btn-test">Send Test Notification</button>
+        
+        <p class="note" id="status"></p>
+    </div>
+
+    <script src="welcome.js"></script>
+</body>
+</html>

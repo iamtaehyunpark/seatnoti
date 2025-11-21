@@ -30,3 +30,30 @@ button.text-btn { background: none; color: #666; margin-top: 10px; text-decorati
 .section-row { display: flex; align-items: center; padding: 5px 0; border-bottom: 1px solid #eee; }
 .section-row input { width: auto; margin-right: 10px; }
 .section-details { font-size: 12px; }
+
+/* Mute Button Styles */
+.btn-icon {
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0 5px;
+    margin-left: 5px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.btn-icon:hover {
+    opacity: 1;
+}
+
+/* Visual state for muted items */
+.watch-item.muted {
+    opacity: 0.6;
+    background-color: #f0f0f0;
+}
+
+.watch-item.muted .status-badge {
+    background-color: #ccc; /* Gray out the badge */
+    color: #666;
+}
