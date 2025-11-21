@@ -112,30 +112,50 @@ async function performSearch() {
 }
 
 function renderSearchResults(hits) {
-  searchResultsDiv.classList.remove('hidden');
-  hits.forEach(hit => {
-    const div = document.createElement('div');
-    div.className = 'course-item';
-    div.innerHTML = `
-      <strong>${hit.subject.shortDescription} ${hit.catalogNumber}</strong><br>
-      ${hit.title}
-    `;
-    div.addEventListener('click', () => loadSections(hit));
-    searchResultsDiv.appendChild(div);
-  });
-}
-
-async function loadSections(courseHit) {
-  const statusMsg = document.getElementById('status-msg');
-  statusMsg.textContent = "Loading sections...";
+    const searchResultsDiv = document.getElementById('search-results');
+    searchResultsDiv.classList.remove('hidden');
+    searchResultsDiv.innerHTML = ''; // Clear previous results
   
-  // Save current context
-  currentSelectedCourse = {
-    termCode: courseHit.termCode,
-    subjectCode: courseHit.subject.subjectCode,
-    courseId: courseHit.courseId,
-    courseName: `${courseHit.subject.shortDescription} ${courseHit.catalogNumber}`
-  };
+    hits.forEach(hit => {
+      const div = document.createElement('div');
+      div.className = 'course-item';
+  
+      // LOGIC UPDATE: Check for specific topics (e.g. "Jews in Early Modern World")
+      let courseTitle = hit.title;
+      if (hit.topics && hit.topics.length > 0) {
+          // If there is a topic, append it to the title for clarity
+          courseTitle = `${hit.title}: ${hit.topics[0].shortDescription}`;
+      }
+  
+      // LOGIC UPDATE: Use 'courseDesignation' (e.g. "COM ARTS 100") instead of building it manually
+      div.innerHTML = `
+        <strong>${hit.courseDesignation}</strong><br>
+        <span style="font-size: 0.9em;">${courseTitle}</span>
+      `;
+      
+      div.addEventListener('click', () => loadSections(hit));
+      searchResultsDiv.appendChild(div);
+    });
+  }
+
+  async function loadSections(courseHit) {
+    const statusMsg = document.getElementById('status-msg');
+    statusMsg.textContent = "Loading sections...";
+    
+    // LOGIC UPDATE: Capture the topic title if it exists
+    let fullCourseName = `${courseHit.courseDesignation}: ${courseHit.title}`;
+    if (courseHit.topics && courseHit.topics.length > 0) {
+        fullCourseName = `${courseHit.courseDesignation}: ${courseHit.topics[0].shortDescription}`;
+    }
+  
+    // Save current context
+    currentSelectedCourse = {
+      termCode: courseHit.termCode,
+      subjectCode: courseHit.subject.subjectCode,
+      courseId: courseHit.courseId, // This handles IDs like "024969.11" correctly
+      courseName: fullCourseName 
+    };
+  
 
   try {
     const url = `https://enroll.wisc.edu/api/search/v1/enrollmentPackages/${currentSelectedCourse.termCode}/${currentSelectedCourse.subjectCode}/${currentSelectedCourse.courseId}`;

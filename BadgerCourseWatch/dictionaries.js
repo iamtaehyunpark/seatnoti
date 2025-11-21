@@ -1,15 +1,45 @@
-// You can edit these lists later to add more terms or subjects.
-
 export const TERMS = [
-    { label: "Spring 2026", value: "1264" }, // Based on your data
+    { label: "Spring 2026", value: "1264" },
     { label: "Fall 2025", value: "1262" },
     { label: "Summer 2025", value: "1260" }
 ];
 
+// Extracted from your courseSearch.json
 export const SUBJECTS = [
-    { label: "Computer Sciences (COMP SCI)", value: "266" },
+    { label: "Accounting & Info Systems (ACCT I S)", value: "232" },
+    { label: "African American Studies (AFROAMER)", value: "106" },
+    { label: "African Cultural Studies (AFRICAN)", value: "104" },
+    { label: "American Indian Studies (AMER IND)", value: "140" },
+    { label: "Art Department (ART)", value: "168" },
+    { label: "Asian Languages & Cultures (ASIAN)", value: "185" },
+    { label: "Atmospheric & Oceanic Sci (ATM OCN)", value: "640" },
+    { label: "Biochemistry (BIOCHEM)", value: "200" },
+    { label: "Biological Systems Engr (BSE)", value: "112" },
+    { label: "Biomedical Engineering (B M E)", value: "207" },
+    { label: "Botany (BOTANY)", value: "208" },
+    { label: "Chemical & Biological Engr (CBE)", value: "220" },
+    { label: "Civil & Envir Engr (CIV ENGR)", value: "240" },
+    { label: "Communication Arts (COM ARTS)", value: "250" },
     { label: "Electrical & Computer Engr (E C E)", value: "320" },
+    { label: "Engineering Mechanics (E M A)", value: "346" },
+    { label: "English (ENGL)", value: "352" },
+    { label: "Folklore Program (FOLKLORE)", value: "380" },
+    { label: "Gender & Womens Studies (GEN&WS)", value: "963" },
+    { label: "Geological Engineering (G L E)", value: "418" },
+    { label: "Geoscience (GEOSCI)", value: "420" },
+    { label: "History (HISTORY)", value: "448" },
+    { label: "Industrial & Systems Engr (I SY E)", value: "490" },
+    { label: "Kinesiology (KINES)", value: "742" },
+    { label: "Life Sciences Comm (LSC)", value: "120" },
+    { label: "Materials Sci & Engr (M S & E)", value: "636" },
     { label: "Mathematics (MATH)", value: "600" },
-    { label: "Statistics (STAT)", value: "932" },
-    { label: "Psychology (PSYCH)", value: "820" }
+    { label: "Mechanical Engineering (M E)", value: "612" },
+    { label: "Microbiology (MICROBIO)", value: "192" },
+    { label: "Music (MUSIC)", value: "660" },
+    { label: "Music-Performance (MUS PERF)", value: "664" },
+    { label: "Nuclear Engineering (N E)", value: "684" },
+    { label: "Occupational Therapy (OCC THER)", value: "695" },
+    { label: "Rehab Psych & Special Ed (RP & SE)", value: "194" },
+    { label: "Social Work (SOC WORK)", value: "896" },
+    { label: "Theatre and Drama (THEATRE)", value: "942" }
 ];
