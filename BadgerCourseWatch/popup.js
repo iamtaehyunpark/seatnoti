@@ -28,6 +28,12 @@ function populateDropdowns() {
     termSelect.appendChild(opt);
   });
 
+  // UPDATE: Add "None" / "All Subjects" option
+  const defaultOpt = document.createElement('option');
+  defaultOpt.value = ""; 
+  defaultOpt.textContent = "All Subjects (None)";
+  subjectSelect.appendChild(defaultOpt);
+
   SUBJECTS.forEach(s => {
     const opt = document.createElement('option');
     opt.value = s.value;
@@ -56,7 +62,6 @@ function switchView(viewName) {
 // --- Helpers for Time/Date ---
 function formatTime(ms) {
   if (!ms && ms !== 0) return '';
-  // ms is milliseconds from start of day (e.g. 55800000 = 15:30)
   const totalMinutes = Math.floor(ms / 60000);
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
@@ -96,11 +101,19 @@ async function performSearch() {
   searchResultsDiv.innerHTML = '';
   sectionResultsDiv.classList.add('hidden');
 
+  // UPDATE: Logic to make filter "unwork" when None is selected
+  const filters = [];
+  if (subject) { 
+    // Only add the subject filter if a real value is selected.
+    // If subject is "" (All Subjects), this block is skipped, effectively disabling the filter.
+    filters.push({ term: { "subject.subjectCode": subject } });
+  }
+
   try {
     const payload = {
       selectedTerm: term,
       queryString: keyword,
-      filters: [{ term: { "subject.subjectCode": subject } }],
+      filters: filters, 
       page: 1,
       pageSize: 50,
       sortOrder: "SCORE"
@@ -192,7 +205,6 @@ function renderSections(packages) {
   sectionListDiv.innerHTML = '';
 
   packages.forEach(pkg => {
-    // 1. Find the matching Section inside that package
     let targetSec = pkg.sections.find(s => s.classUniqueId.classNumber === pkg.enrollmentClassNumber);
     
     if (!targetSec && pkg.sections.length > 0) {
@@ -201,11 +213,10 @@ function renderSections(packages) {
 
     if (!targetSec) return;
 
-    // 2. Extract Meetings Info
+    // Extract Meetings Info
     let meetingInfo = '<span style="color:#666; font-style:italic;">No meeting time</span>';
     
     if (targetSec.classMeetings && targetSec.classMeetings.length > 0) {
-        // Filter for actual CLASS meetings (ignore EXAMs if possible, or just show first)
         const meetings = targetSec.classMeetings.filter(m => m.meetingType === 'CLASS');
         
         if (meetings.length > 0) {
@@ -241,8 +252,7 @@ function renderSections(packages) {
                data-status="${status}" 
                data-seats="${seats}">
         <div class="section-details">
-          <strong>${targetSec.type} ${targetSec.sectionNumber}</strong>
-          <br>
+          <strong>${targetSec.type} ${targetSec.sectionNumber}</strong><br>
           ${meetingInfo}
           <div style="margin-top:4px;">Status: <span class="status-badge status-${status}">${status}</span> (${seats} seats)</div>
         </div>
