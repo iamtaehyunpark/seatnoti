@@ -14,7 +14,7 @@ const tabs = { watch: document.getElementById('tab-watch'), search: document.get
 const searchResultsDiv = document.getElementById('search-results');
 const sectionResultsDiv = document.getElementById('section-results');
 const sectionListDiv = document.getElementById('section-list');
-let currentSelectedCourse = null; // Stores data about the course currently being inspected
+let currentSelectedCourse = null; 
 
 // --- Setup Functions ---
 function populateDropdowns() {
@@ -51,6 +51,24 @@ function switchView(viewName) {
   tabs.search.classList.toggle('active', viewName === 'search');
 
   if (viewName === 'watch') loadWatchlist();
+}
+
+// --- Helpers for Time/Date ---
+function formatTime(ms) {
+  if (!ms && ms !== 0) return '';
+  // ms is milliseconds from start of day (e.g. 55800000 = 15:30)
+  const totalMinutes = Math.floor(ms / 60000);
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  const displayHour = hours % 12 || 12;
+  const displayMin = minutes < 10 ? '0' + minutes : minutes;
+  return `${displayHour}:${displayMin} ${ampm}`;
+}
+
+function formatDate(ms) {
+  if (!ms) return '';
+  return new Date(ms).toLocaleDateString(undefined, { month: 'numeric', day: 'numeric' });
 }
 
 // --- Search Logic ---
@@ -112,50 +130,43 @@ async function performSearch() {
 }
 
 function renderSearchResults(hits) {
-    const searchResultsDiv = document.getElementById('search-results');
-    searchResultsDiv.classList.remove('hidden');
-    searchResultsDiv.innerHTML = ''; // Clear previous results
+  searchResultsDiv.classList.remove('hidden');
+  searchResultsDiv.innerHTML = '';
+
+  hits.forEach(hit => {
+    const div = document.createElement('div');
+    div.className = 'course-item';
+
+    let courseTitle = hit.title;
+    if (hit.topics && hit.topics.length > 0) {
+        courseTitle = `${hit.title}: ${hit.topics[0].shortDescription}`;
+    }
+
+    div.innerHTML = `
+      <strong>${hit.courseDesignation}</strong><br>
+      <span style="font-size: 0.9em;">${courseTitle}</span>
+    `;
+    
+    div.addEventListener('click', () => loadSections(hit));
+    searchResultsDiv.appendChild(div);
+  });
+}
+
+async function loadSections(courseHit) {
+  const statusMsg = document.getElementById('status-msg');
+  statusMsg.textContent = "Loading sections...";
   
-    hits.forEach(hit => {
-      const div = document.createElement('div');
-      div.className = 'course-item';
-  
-      // LOGIC UPDATE: Check for specific topics (e.g. "Jews in Early Modern World")
-      let courseTitle = hit.title;
-      if (hit.topics && hit.topics.length > 0) {
-          // If there is a topic, append it to the title for clarity
-          courseTitle = `${hit.title}: ${hit.topics[0].shortDescription}`;
-      }
-  
-      // LOGIC UPDATE: Use 'courseDesignation' (e.g. "COM ARTS 100") instead of building it manually
-      div.innerHTML = `
-        <strong>${hit.courseDesignation}</strong><br>
-        <span style="font-size: 0.9em;">${courseTitle}</span>
-      `;
-      
-      div.addEventListener('click', () => loadSections(hit));
-      searchResultsDiv.appendChild(div);
-    });
+  let fullCourseName = `${courseHit.courseDesignation}: ${courseHit.title}`;
+  if (courseHit.topics && courseHit.topics.length > 0) {
+      fullCourseName = `${courseHit.courseDesignation}: ${courseHit.topics[0].shortDescription}`;
   }
 
-  async function loadSections(courseHit) {
-    const statusMsg = document.getElementById('status-msg');
-    statusMsg.textContent = "Loading sections...";
-    
-    // LOGIC UPDATE: Capture the topic title if it exists
-    let fullCourseName = `${courseHit.courseDesignation}: ${courseHit.title}`;
-    if (courseHit.topics && courseHit.topics.length > 0) {
-        fullCourseName = `${courseHit.courseDesignation}: ${courseHit.topics[0].shortDescription}`;
-    }
-  
-    // Save current context
-    currentSelectedCourse = {
-      termCode: courseHit.termCode,
-      subjectCode: courseHit.subject.subjectCode,
-      courseId: courseHit.courseId, // This handles IDs like "024969.11" correctly
-      courseName: fullCourseName 
-    };
-  
+  currentSelectedCourse = {
+    termCode: courseHit.termCode,
+    subjectCode: courseHit.subject.subjectCode,
+    courseId: courseHit.courseId,
+    courseName: fullCourseName
+  };
 
   try {
     const url = `https://enroll.wisc.edu/api/search/v1/enrollmentPackages/${currentSelectedCourse.termCode}/${currentSelectedCourse.subjectCode}/${currentSelectedCourse.courseId}`;
@@ -166,28 +177,74 @@ function renderSearchResults(hits) {
     renderSections(sections);
 
   } catch (err) {
+    console.error(err);
     statusMsg.textContent = "Error loading sections.";
   }
 }
 
-function renderSections(sections) {
+function renderSections(packages) {
+  const sectionResultsDiv = document.getElementById('section-results');
+  const searchResultsDiv = document.getElementById('search-results');
+  const sectionListDiv = document.getElementById('section-list');
+
   searchResultsDiv.classList.add('hidden');
   sectionResultsDiv.classList.remove('hidden');
   sectionListDiv.innerHTML = '';
 
-  sections.forEach(sec => {
+  packages.forEach(pkg => {
+    // 1. Find the matching Section inside that package
+    let targetSec = pkg.sections.find(s => s.classUniqueId.classNumber === pkg.enrollmentClassNumber);
+    
+    if (!targetSec && pkg.sections.length > 0) {
+        targetSec = pkg.sections[0];
+    }
+
+    if (!targetSec) return;
+
+    // 2. Extract Meetings Info
+    let meetingInfo = '<span style="color:#666; font-style:italic;">No meeting time</span>';
+    
+    if (targetSec.classMeetings && targetSec.classMeetings.length > 0) {
+        // Filter for actual CLASS meetings (ignore EXAMs if possible, or just show first)
+        const meetings = targetSec.classMeetings.filter(m => m.meetingType === 'CLASS');
+        
+        if (meetings.length > 0) {
+            meetingInfo = meetings.map(m => {
+                const days = m.meetingDays || '';
+                const time = `${formatTime(m.meetingTimeStart)} - ${formatTime(m.meetingTimeEnd)}`;
+                const dates = `${formatDate(m.startDate)} to ${formatDate(m.endDate)}`;
+                return `<div>${days} ${time}<br><span style="font-size:0.85em; color:#888;">${dates}</span></div>`;
+            }).join('');
+        }
+    }
+
+    const enrollment = targetSec.enrollmentStatus;
+    const seats = enrollment.openSeats;
+    const waitlistOpen = enrollment.openWaitlistSpots;
+    
+    let status = "CLOSED";
+    if (seats > 0) {
+      status = "OPEN";
+    } else if (waitlistOpen > 0) {
+      status = "WAITLISTED";
+    }
+    
     const row = document.createElement('div');
     row.className = 'section-row';
     
-    const status = sec.packageEnrollmentStatus.status;
-    const seats = sec.packageEnrollmentStatus.availableSeats;
-    
     row.innerHTML = `
       <label>
-        <input type="checkbox" value="${sec.enrollmentClassNumber}" data-section="${sec.sectionNumber}" data-status="${status}" data-seats="${seats}">
+        <input type="checkbox" 
+               value="${pkg.enrollmentClassNumber}" 
+               data-section="${targetSec.sectionNumber}" 
+               data-type="${targetSec.type}"
+               data-status="${status}" 
+               data-seats="${seats}">
         <div class="section-details">
-          <strong>Section ${sec.sectionNumber}</strong> (${sec.type})<br>
-          Status: ${status} (${seats} open)
+          <strong>${targetSec.type} ${targetSec.sectionNumber}</strong>
+          <br>
+          ${meetingInfo}
+          <div style="margin-top:4px;">Status: <span class="status-badge status-${status}">${status}</span> (${seats} seats)</div>
         </div>
       </label>
     `;
@@ -195,9 +252,10 @@ function renderSections(sections) {
   });
 }
 
-// --- Watchlist Logic ---
 function addToWatchlist() {
+  const sectionListDiv = document.getElementById('section-list');
   const checkboxes = sectionListDiv.querySelectorAll('input[type="checkbox"]:checked');
+  
   if (checkboxes.length === 0) return;
 
   chrome.storage.local.get(['watchlist'], (result) => {
@@ -211,9 +269,9 @@ function addToWatchlist() {
       }
 
       const sectionNum = cb.getAttribute('data-section');
-      const uniqueId = `${currentSelectedCourse.termCode}-${currentSelectedCourse.courseId}-${sectionNum}`;
+      const sectionType = cb.getAttribute('data-type');
+      const uniqueId = `${currentSelectedCourse.termCode}-${cb.value}`; 
 
-      // Deduplicate
       if (!watchlist.find(item => item.uniqueId === uniqueId)) {
         watchlist.push({
           uniqueId: uniqueId,
@@ -222,9 +280,10 @@ function addToWatchlist() {
           courseId: currentSelectedCourse.courseId,
           courseName: currentSelectedCourse.courseName,
           sectionNumber: sectionNum,
+          sectionType: sectionType,
           lastStatus: cb.getAttribute('data-status'),
           lastSeats: cb.getAttribute('data-seats'),
-          enrollmentClassNumber: cb.value // Critical for matching later
+          enrollmentClassNumber: parseInt(cb.value) 
         });
         addedCount++;
       }
@@ -254,7 +313,8 @@ function loadWatchlist() {
       div.className = 'watch-item';
       div.innerHTML = `
         <div class="watch-info">
-          <h4>${item.courseName} - Sec ${item.sectionNumber}</h4>
+          <h4>${item.courseName}</h4>
+          <strong>${item.sectionType || 'Sec'} ${item.sectionNumber}</strong>
           <p>Seats: ${item.lastSeats}</p>
         </div>
         <div style="text-align:right;">
@@ -263,7 +323,6 @@ function loadWatchlist() {
         </div>
       `;
       
-      // Delete Button Logic
       div.querySelector('.btn-delete').addEventListener('click', (e) => {
         e.stopPropagation();
         removeFromWatchlist(item.uniqueId);

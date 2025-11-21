@@ -4,8 +4,8 @@ export const TERMS = [
     { label: "Summer 2025", value: "1260" }
 ];
 
-// Extracted from your courseSearch.json
 export const SUBJECTS = [
+    { label: "None", value: "" },
     { label: "Accounting & Info Systems (ACCT I S)", value: "232" },
     { label: "African American Studies (AFROAMER)", value: "106" },
     { label: "African Cultural Studies (AFRICAN)", value: "104" },
@@ -18,6 +18,7 @@ export const SUBJECTS = [
     { label: "Biomedical Engineering (B M E)", value: "207" },
     { label: "Botany (BOTANY)", value: "208" },
     { label: "Chemical & Biological Engr (CBE)", value: "220" },
+    { label: "Chemistry (CHEM)", value: "224" },  // <--- ADDED THIS
     { label: "Civil & Envir Engr (CIV ENGR)", value: "240" },
     { label: "Communication Arts (COM ARTS)", value: "250" },
     { label: "Electrical & Computer Engr (E C E)", value: "320" },
