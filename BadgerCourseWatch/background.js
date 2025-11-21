@@ -13,7 +13,7 @@ async function checkEnrollment() {
 
   if (watchlist.length === 0) return;
 
-  // Group by CourseID to avoid spamming API (if user watches 3 sections of same course)
+  // Group by CourseID to avoid spamming API
   const uniqueRequests = {};
   watchlist.forEach(item => {
     const key = `${item.termCode}/${item.subjectCode}/${item.courseId}`;
@@ -27,26 +27,50 @@ async function checkEnrollment() {
       const response = await fetch(`https://enroll.wisc.edu/api/search/v1/enrollmentPackages/${apiPath}`);
       if (!response.ok) continue;
 
-      const sections = await response.json();
+      const packages = await response.json();
 
       // Check each watched item against the live API data
       for (const item of items) {
-        // Find the matching section in the API response
-        // We use sectionNumber (e.g. "001") as the stable identifier
-        const liveSection = sections.find(s => s.sectionNumber === item.sectionNumber);
+        // 1. Find the matching Package
+        const livePkg = packages.find(p => p.enrollmentClassNumber === item.enrollmentClassNumber);
 
-        if (liveSection) {
-          const status = liveSection.packageEnrollmentStatus.status;
-          const seats = liveSection.packageEnrollmentStatus.availableSeats;
+        if (livePkg) {
+          // 2. Find the matching Section inside that package
+          let liveSection = livePkg.sections.find(s => s.classUniqueId.classNumber === item.enrollmentClassNumber);
+          
+          // Fallback
+          if (!liveSection && livePkg.sections.length > 0) {
+             liveSection = livePkg.sections[0];
+          }
 
-          // Update storage with latest info
-          item.lastStatus = status;
-          item.lastSeats = seats;
+          if (liveSection) {
+            const enrollment = liveSection.enrollmentStatus;
+            const seats = enrollment.openSeats;
+            const waitlistOpen = enrollment.openWaitlistSpots;
 
-          // LOGIC: If OPEN or Seats > 0, and it wasn't fully open before (or just always alert if open)
-          // We alert if it is OPEN or has seats.
-          if (status === "OPEN" || seats > 0) {
-            sendNotification(item, seats);
+            // Derive Status
+            let status = "CLOSED";
+            if (seats > 0) {
+              status = "OPEN";
+            } else if (waitlistOpen > 0) {
+              status = "WAITLISTED";
+            }
+
+            // Check if status changed or if we should alert
+            const previousStatus = item.lastStatus;
+            
+            // Update storage
+            item.lastStatus = status;
+            item.lastSeats = seats;
+
+            // --- ALERT LOGIC ---
+            // Trigger if OPEN or WAITLISTED
+            if (status === "OPEN" || status === "WAITLISTED") {
+              // Optional: You can add a check here to only alert if it wasn't already known
+              // e.g., if (status !== previousStatus) ... 
+              // For now, we alert every check if it's available, which ensures you don't miss it.
+              sendNotification(item, seats, waitlistOpen, status);
+            }
           }
         }
       }
@@ -59,9 +83,14 @@ async function checkEnrollment() {
   chrome.storage.local.set({ watchlist });
 }
 
-function sendNotification(item, seats) {
-  const title = `SEAT AVAILABLE: ${item.courseName}`;
-  const message = `Section ${item.sectionNumber} has ${seats} seats open! Click to enroll.`;
+function sendNotification(item, seats, waitlistOpen, status) {
+  let title = `SEAT AVAILABLE: ${item.courseName}`;
+  let message = `${item.sectionType || 'Section'} ${item.sectionNumber} has ${seats} seats open!`;
+
+  if (status === "WAITLISTED") {
+    title = `WAITLIST OPEN: ${item.courseName}`;
+    message = `${item.sectionType || 'Section'} ${item.sectionNumber} has ${waitlistOpen} waitlist spots!`;
+  }
 
   chrome.notifications.create(item.uniqueId, {
     type: 'basic',
@@ -69,14 +98,12 @@ function sendNotification(item, seats) {
     title: title,
     message: message,
     priority: 2,
-    requireInteraction: true // Keeps notification on screen until clicked
+    requireInteraction: true 
   });
 }
 
 // Handle Notification Click
 chrome.notifications.onClicked.addListener((notificationId) => {
-  // Open the enrollment site
   chrome.tabs.create({ url: "https://enroll.wisc.edu/course-search-enroll" });
-  // Clear notification
   chrome.notifications.clear(notificationId);
 });

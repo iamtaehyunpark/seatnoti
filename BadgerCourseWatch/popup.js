@@ -28,7 +28,7 @@ function populateDropdowns() {
     termSelect.appendChild(opt);
   });
 
-  // UPDATE: Add "None" / "All Subjects" option
+  // "All Subjects" option
   const defaultOpt = document.createElement('option');
   defaultOpt.value = ""; 
   defaultOpt.textContent = "All Subjects (None)";
@@ -92,27 +92,23 @@ async function performSearch() {
   const keyword = document.getElementById('search-keyword').value;
   const statusMsg = document.getElementById('status-msg');
 
-  if (!keyword) {
-    statusMsg.textContent = "Please enter a keyword.";
-    return;
-  }
+  // REMOVED: The check that required keyword to be present.
+  // Now you can search with an empty keyword.
 
   statusMsg.textContent = "Searching...";
   searchResultsDiv.innerHTML = '';
   sectionResultsDiv.classList.add('hidden');
 
-  // UPDATE: Logic to make filter "unwork" when None is selected
+  // Logic to make filter "unwork" when None is selected
   const filters = [];
   if (subject) { 
-    // Only add the subject filter if a real value is selected.
-    // If subject is "" (All Subjects), this block is skipped, effectively disabling the filter.
     filters.push({ term: { "subject.subjectCode": subject } });
   }
 
   try {
     const payload = {
       selectedTerm: term,
-      queryString: keyword,
+      queryString: keyword, // Can be empty string now
       filters: filters, 
       page: 1,
       pageSize: 50,

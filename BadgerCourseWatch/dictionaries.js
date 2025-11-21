@@ -5,7 +5,6 @@ export const TERMS = [
 ];
 
 export const SUBJECTS = [
-    { label: "None", value: "" },
     { label: "Accounting & Info Systems (ACCT I S)", value: "232" },
     { label: "African American Studies (AFROAMER)", value: "106" },
     { label: "African Cultural Studies (AFRICAN)", value: "104" },
