@@ -81,6 +81,10 @@ function setupSearch() {
   document.getElementById('btn-back').addEventListener('click', () => {
     sectionResultsDiv.classList.add('hidden');
     searchResultsDiv.classList.remove('hidden');
+    searchResultsDiv.innerHTML = '';
+    document.getElementById('status-msg').textContent = '';
+    // Clear the section search result under "Select Sections"
+    document.getElementById('section-list').innerHTML = '';
   });
   document.getElementById('btn-add-watch').addEventListener('click', addToWatchlist);
 }
@@ -300,7 +304,7 @@ function addToWatchlist() {
     });
 
     chrome.storage.local.set({ watchlist }, () => {
-      document.getElementById('status-msg').textContent = `Added ${addedCount} sections.`;
+      //document.getElementById('status-msg').textContent = `Added ${addedCount} sections.`;
       switchView('watch');
       chrome.runtime.sendMessage({ action: "CHECK_NOW" });
     });
@@ -337,9 +341,11 @@ function loadWatchlist() {
         </div>
         <div style="text-align:right;">
            <span class="status-badge status-${item.lastStatus}">${item.lastStatus}</span>
-           <div style="margin-top: 5px;">
+           <div style="margin-top: 1px;">
              <button class="btn-icon btn-mute" title="${muteTitle}">${muteIcon}</button>
-             <button class="btn-icon btn-delete" title="Remove">✕</button>
+                <div style="margin-top: 4px;">
+                    <button class="btn-icon btn-delete" title="Remove">✕</button>
+                </div>
            </div>
         </div>
       `;
