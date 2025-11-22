@@ -6,10 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
   loadWatchlist();
   setupTabs();
   setupSearch();
+  setupCredits();
 });
 
 // --- DOM Elements ---
-const views = { watch: document.getElementById('view-watch'), search: document.getElementById('view-search') };
+const views = { watch: document.getElementById('view-watch'), search: document.getElementById('view-search'), credits: document.getElementById('view-credits') };
 const tabs = { watch: document.getElementById('tab-watch'), search: document.getElementById('tab-search') };
 const searchResultsDiv = document.getElementById('search-results');
 const sectionResultsDiv = document.getElementById('section-results');
@@ -46,11 +47,22 @@ function setupTabs() {
   tabs.search.addEventListener('click', () => switchView('search'));
 }
 
+function setupCredits() {
+  const creditsBtn = document.getElementById('btn-credits');
+  if (creditsBtn) {
+    creditsBtn.addEventListener('click', () => {
+      switchView('credits');
+    });
+  }
+}
+
 function switchView(viewName) {
   views.watch.classList.toggle('hidden', viewName !== 'watch');
   views.watch.classList.toggle('active', viewName === 'watch');
   views.search.classList.toggle('hidden', viewName !== 'search');
   views.search.classList.toggle('active', viewName === 'search');
+  views.credits.classList.toggle('hidden', viewName !== 'credits');
+  views.credits.classList.toggle('active', viewName === 'credits');
   
   tabs.watch.classList.toggle('active', viewName === 'watch');
   tabs.search.classList.toggle('active', viewName === 'search');
