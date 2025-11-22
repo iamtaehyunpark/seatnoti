@@ -48,7 +48,23 @@ chrome.runtime.onInstalled.addListener((details) => {
     for (const [apiPath, items] of Object.entries(uniqueRequests)) {
       try {
         const response = await fetch(`https://enroll.wisc.edu/api/search/v1/enrollmentPackages/${apiPath}`);
-        if (!response.ok) continue;
+        
+        // --- NEW: LOGIN ERROR DETECTION ---
+        // 1. Check for Explicit 401/403 (Unauthorized)
+        if (response.status === 401 || response.status === 403) {
+          sendLoginAlert();
+          return; // Stop checking, we are logged out
+        }
+
+        // 2. Check for Implicit Redirects (API returns HTML login page instead of JSON)
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.indexOf("application/json") === -1) {
+          sendLoginAlert();
+          return; 
+        }
+        // ----------------------------------
+
+        if (!response.ok) continue; // Skip generic server errors (500)
   
         const packages = await response.json();
   
@@ -99,6 +115,18 @@ chrome.runtime.onInstalled.addListener((details) => {
     chrome.storage.local.set({ watchlist });
   }
   
+  // --- NEW: SPECIFIC LOGIN ALERT ---
+  function sendLoginAlert() {
+    chrome.notifications.create("login-alert", {
+      type: 'basic',
+      iconUrl: 'icon.png',
+      title: '⚠️ Session Expired',
+      message: 'Please log in to enroll.wisc.edu to keep watching courses.',
+      priority: 2,
+      requireInteraction: true
+    });
+  }
+  
   function sendNotification(item, seats, waitlistOpen, status) {
     let title = `OPEN!!: ${item.courseName}`;
     let message = `${item.courseName} - ${item.sectionType || 'Section'} ${item.sectionNumber} has ${seats} seats open!`;
@@ -126,6 +154,11 @@ chrome.runtime.onInstalled.addListener((details) => {
   }
   
   chrome.notifications.onClicked.addListener((notificationId) => {
-    chrome.tabs.create({ url: "https://enroll.wisc.edu/my-courses" });
+    // Handle login alert differently
+    if (notificationId === "login-alert") {
+      chrome.tabs.create({ url: "https://enroll.wisc.edu" });
+    } else {
+      chrome.tabs.create({ url: "https://enroll.wisc.edu/course-search-enroll" });
+    }
     chrome.notifications.clear(notificationId);
   });
