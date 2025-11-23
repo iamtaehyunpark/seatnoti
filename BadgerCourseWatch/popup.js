@@ -146,6 +146,7 @@ async function performSearch() {
   } catch (err) {
     console.error(err);
     statusMsg.textContent = "Error: " + err.message;
+    window.open('https://enroll.wisc.edu/', '_blank');
   }
 }
 
