@@ -125,6 +125,15 @@ chrome.runtime.onInstalled.addListener((details) => {
       priority: 2,
       requireInteraction: true
     });
+    chrome.notifications.onClicked.addListener((notificationId) => {
+      // Handle login alert differently
+      if (notificationId === "login-alert") {
+        chrome.tabs.create({ url: "https://enroll.wisc.edu" });
+      } else {
+        chrome.tabs.create({ url: "https://enroll.wisc.edu/my-courses" });
+      }
+      chrome.notifications.clear(notificationId);
+    });
   }
   
   function sendNotification(item, seats, waitlistOpen, status) {
@@ -158,7 +167,7 @@ chrome.runtime.onInstalled.addListener((details) => {
     if (notificationId === "login-alert") {
       chrome.tabs.create({ url: "https://enroll.wisc.edu" });
     } else {
-      chrome.tabs.create({ url: "https://enroll.wisc.edu/course-search-enroll" });
+      chrome.tabs.create({ url: "https://enroll.wisc.edu/my-courses" });
     }
     chrome.notifications.clear(notificationId);
   });
