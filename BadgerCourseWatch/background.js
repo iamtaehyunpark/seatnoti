@@ -72,6 +72,8 @@ chrome.runtime.onInstalled.addListener((details) => {
             // --- NEW: MUTE CHECK ---
             if (item.isMuted) {
                 continue; // Skip this item completely
+            } else if (item.isWaitlistMuted && item.lastStatus == 'WAITLISTED') {
+                continue;
             }
             // -----------------------
 

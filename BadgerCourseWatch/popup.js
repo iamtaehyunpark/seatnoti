@@ -310,7 +310,8 @@ function addToWatchlist() {
           lastStatus: cb.getAttribute('data-status'),
           lastSeats: cb.getAttribute('data-seats'),
           enrollmentClassNumber: parseInt(cb.value),
-          isMuted: false 
+          isMuted: false,
+          isWaitlistMuted: false
         });
         addedCount++;
       }
@@ -342,6 +343,7 @@ function loadWatchlist() {
       
       const muteIcon = item.isMuted ? '🔕' : '🔔';
       const muteTitle = item.isMuted ? 'Unmute alerts' : 'Mute alerts';
+      const muteWaitlist = item.isWaitlistMuted ? 'Unmute waitlist' : 'Mute waitlist'
 
       div.innerHTML = `
         <div class="watch-info">
@@ -355,7 +357,11 @@ function loadWatchlist() {
         <div style="text-align:right;">
            <span class="status-badge status-${item.lastStatus}">${item.lastStatus}</span>
            <div style="margin-top: 1px;">
-             <button class="btn-icon btn-mute" title="${muteTitle}">${muteIcon}</button>
+            <div style="display: flex">
+              <button class="btn-wicon btn-waitlistMute" title="${muteWaitlist}">${muteWaitlist}</button>
+              <div style="margin-right: 2px;"></div>
+              <button class="btn-icon btn-mute" title="${muteTitle}">${muteIcon}</button>
+              </div>
                 <div style="margin-top: 4px;">
                     <button class="btn-icon btn-delete" title="Remove">✕</button>
                 </div>
@@ -366,6 +372,11 @@ function loadWatchlist() {
       div.querySelector('.btn-mute').addEventListener('click', (e) => {
         e.stopPropagation();
         toggleMute(item.uniqueId);
+      });
+
+      div.querySelector('.btn-waitlistMute').addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleWaitlistMute(item.uniqueId);
       });
 
       div.querySelector('.btn-delete').addEventListener('click', (e) => {
@@ -385,6 +396,18 @@ function toggleMute(uniqueId) {
     
     if (itemIndex > -1) {
       watchlist[itemIndex].isMuted = !watchlist[itemIndex].isMuted;
+      chrome.storage.local.set({ watchlist }, loadWatchlist);
+    }
+  });
+}
+
+function toggleWaitlistMute(uniqueId) {
+  chrome.storage.local.get(['watchlist'], (result) => {
+    const watchlist = result.watchlist || [];
+    const itemIndex = watchlist.findIndex(i => i.uniqueId === uniqueId);
+    
+    if (itemIndex > -1) {
+      watchlist[itemIndex].isWaitlistMuted = !watchlist[itemIndex].isWaitlistMuted;
       chrome.storage.local.set({ watchlist }, loadWatchlist);
     }
   });

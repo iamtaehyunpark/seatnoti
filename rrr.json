@@ -1,0 +1,467 @@
+[
+    {
+        "subjectCode": "102",
+        "shortDescription": "A F AERO",
+        "description": "AIR FORCE AEROSPACE STUDIES"
+    },
+    {
+        "subjectCode": "104",
+        "shortDescription": "AFRICAN",
+        "description": "AFRICAN CULTURAL STUDIES"
+    },
+    {
+        "subjectCode": "106",
+        "shortDescription": "AFROAMER",
+        "description": "AFRICAN AMERICAN STUDIES"
+    },
+    {
+        "subjectCode": "108",
+        "shortDescription": "A A E",
+        "description": "AGRICULTURAL AND APPLIED ECON"
+    },
+    {
+        "subjectCode": "112",
+        "shortDescription": "BSE",
+        "description": "BIOLOGICAL SYSTEMS ENGINEERING"
+    },
+    {
+        "subjectCode": "120",
+        "shortDescription": "LSC",
+        "description": "LIFE SCIENCES COMMUNICATION"
+    },
+    {
+        "subjectCode": "146",
+        "shortDescription": "ANAT&PHY",
+        "description": "ANATOMY & PHYSIOLOGY"
+    },
+    {
+        "subjectCode": "156",
+        "shortDescription": "ANTHRO",
+        "description": "ANTHROPOLOGY"
+    },
+    {
+        "subjectCode": "168",
+        "shortDescription": "ART",
+        "description": "ART DEPARTMENT"
+    },
+    {
+        "subjectCode": "180",
+        "shortDescription": "ART HIST",
+        "description": "ART HISTORY"
+    },
+    {
+        "subjectCode": "184",
+        "shortDescription": "ASIAN AM",
+        "description": "ASIAN AMERICAN STUDIES"
+    },
+    {
+        "subjectCode": "185",
+        "shortDescription": "ASIAN",
+        "description": "ASIAN LANGUAGES AND CULTURES"
+    },
+    {
+        "subjectCode": "186",
+        "shortDescription": "ASIALANG",
+        "description": "ASIAN LANG & CULTURE: LANGUAGE"
+    },
+    {
+        "subjectCode": "188",
+        "shortDescription": "ASTRON",
+        "description": "ASTRONOMY"
+    },
+    {
+        "subjectCode": "192",
+        "shortDescription": "MICROBIO",
+        "description": "MICROBIOLOGY"
+    },
+    {
+        "subjectCode": "200",
+        "shortDescription": "BIOCHEM",
+        "description": "BIOCHEMISTRY"
+    },
+    {
+        "subjectCode": "208",
+        "shortDescription": "BOTANY",
+        "description": "BOTANY"
+    },
+    {
+        "subjectCode": "224",
+        "shortDescription": "CHEM",
+        "description": "CHEMISTRY"
+    },
+    {
+        "subjectCode": "228",
+        "shortDescription": "CHICLA",
+        "description": "CHICANA/O & LATINA/O STUDIES"
+    },
+    {
+        "subjectCode": "231",
+        "shortDescription": "GEN BUS",
+        "description": "GENERAL BUSINESS"
+    },
+    {
+        "subjectCode": "233",
+        "shortDescription": "FINANCE",
+        "description": "FINANCE, INVESTMENT & BANKING"
+    },
+    {
+        "subjectCode": "236",
+        "shortDescription": "M H R",
+        "description": "MANAGEMENT AND HUMAN RESOURCES"
+    },
+    {
+        "subjectCode": "239",
+        "shortDescription": "REAL EST",
+        "description": "REAL ESTATE & URBAN LAND ECON"
+    },
+    {
+        "subjectCode": "241",
+        "shortDescription": "R M I",
+        "description": "RISK MANAGEMENT AND INSURANCE"
+    },
+    {
+        "subjectCode": "244",
+        "shortDescription": "CLASSICS",
+        "description": "CLASSICS"
+    },
+    {
+        "subjectCode": "250",
+        "shortDescription": "COM ARTS",
+        "description": "COMMUNICATION ARTS"
+    },
+    {
+        "subjectCode": "252",
+        "shortDescription": "CS&D",
+        "description": "COMMUNICATION SCI & DISORDERS"
+    },
+    {
+        "subjectCode": "266",
+        "shortDescription": "COMP SCI",
+        "description": "COMPUTER SCIENCES"
+    },
+    {
+        "subjectCode": "272",
+        "shortDescription": "CURRIC",
+        "description": "CURRICULUM AND INSTRUCTION"
+    },
+    {
+        "subjectCode": "292",
+        "shortDescription": "DY SCI",
+        "description": "DAIRY SCIENCE"
+    },
+    {
+        "subjectCode": "296",
+        "shortDescription": "ECON",
+        "description": "ECONOMICS"
+    },
+    {
+        "subjectCode": "310",
+        "shortDescription": "ED POL",
+        "description": "EDUCATIONAL POLICY STUDIES"
+    },
+    {
+        "subjectCode": "315",
+        "shortDescription": "ED PSYCH",
+        "description": "EDUCATIONAL PSYCHOLOGY"
+    },
+    {
+        "subjectCode": "320",
+        "shortDescription": "E C E",
+        "description": "ELECTRICAL AND COMPUTER ENGR"
+    },
+    {
+        "subjectCode": "346",
+        "shortDescription": "E M A",
+        "description": "ENGR MECHANICS & AEROSPACE EGR"
+    },
+    {
+        "subjectCode": "352",
+        "shortDescription": "ENGL",
+        "description": "ENGLISH"
+    },
+    {
+        "subjectCode": "355",
+        "shortDescription": "ENTOM",
+        "description": "ENTOMOLOGY"
+    },
+    {
+        "subjectCode": "360",
+        "shortDescription": "ENVIR ST",
+        "description": "ENVIR ST - GAYLORD NELSON INST"
+    },
+    {
+        "subjectCode": "380",
+        "shortDescription": "FOLKLORE",
+        "description": "FOLKLORE PROGRAM"
+    },
+    {
+        "subjectCode": "396",
+        "shortDescription": "F&W ECOL",
+        "description": "FOREST AND WILDLIFE ECOLOGY"
+    },
+    {
+        "subjectCode": "400",
+        "shortDescription": "FRENCH",
+        "description": "FRENCH (FRENCH AND ITALIAN)"
+    },
+    {
+        "subjectCode": "412",
+        "shortDescription": "GENETICS",
+        "description": "GENETICS"
+    },
+    {
+        "subjectCode": "416",
+        "shortDescription": "GEOG",
+        "description": "GEOGRAPHY"
+    },
+    {
+        "subjectCode": "420",
+        "shortDescription": "GEOSCI",
+        "description": "GEOSCIENCE"
+    },
+    {
+        "subjectCode": "424",
+        "shortDescription": "GERMAN",
+        "description": "GERMAN"
+    },
+    {
+        "subjectCode": "428",
+        "shortDescription": "GREEK",
+        "description": "GREEK (CLASSICS)"
+    },
+    {
+        "subjectCode": "442",
+        "shortDescription": "HEBR-MOD",
+        "description": "HEBREW-MODERN"
+    },
+    {
+        "subjectCode": "448",
+        "shortDescription": "HISTORY",
+        "description": "HISTORY"
+    },
+    {
+        "subjectCode": "456",
+        "shortDescription": "HIST SCI",
+        "description": "HISTORY OF SCIENCE"
+    },
+    {
+        "subjectCode": "490",
+        "shortDescription": "I SY E",
+        "description": "INDUSTRIAL & SYSTEMS ENGR"
+    },
+    {
+        "subjectCode": "500",
+        "shortDescription": "ILS",
+        "description": "INTEGRATED LIBERAL STUDIES"
+    },
+    {
+        "subjectCode": "504",
+        "shortDescription": "INTL ST",
+        "description": "INTERNATIONAL STUDIES"
+    },
+    {
+        "subjectCode": "508",
+        "shortDescription": "ITALIAN",
+        "description": "ITALIAN (FRENCH AND ITALIAN)"
+    },
+    {
+        "subjectCode": "510",
+        "shortDescription": "JEWISH",
+        "description": "JEWISH STUDIES"
+    },
+    {
+        "subjectCode": "512",
+        "shortDescription": "JOURN",
+        "description": "JOURN AND MASS COMMUNICATION"
+    },
+    {
+        "subjectCode": "520",
+        "shortDescription": "LAND ARC",
+        "description": "LANDSCAPE ARCHITECTURE"
+    },
+    {
+        "subjectCode": "524",
+        "shortDescription": "LATIN",
+        "description": "LATIN (CLASSICS)"
+    },
+    {
+        "subjectCode": "535",
+        "shortDescription": "LEGAL ST",
+        "description": "LEGAL STUDIES"
+    },
+    {
+        "subjectCode": "544",
+        "shortDescription": "L I S",
+        "description": "LIBRARY & INFORMATION STUDIES"
+    },
+    {
+        "subjectCode": "550",
+        "shortDescription": "LINGUIS",
+        "description": "LINGUISTICS"
+    },
+    {
+        "subjectCode": "551",
+        "shortDescription": "LITTRANS",
+        "description": "LITERATURE IN TRANSLATION"
+    },
+    {
+        "subjectCode": "600",
+        "shortDescription": "MATH",
+        "description": "MATHEMATICS"
+    },
+    {
+        "subjectCode": "604",
+        "shortDescription": "AN SCI",
+        "description": "ANIMAL SCIENCES"
+    },
+    {
+        "subjectCode": "633",
+        "shortDescription": "MEDIEVAL",
+        "description": "MEDIEVAL STUDIES"
+    },
+    {
+        "subjectCode": "640",
+        "shortDescription": "ATM OCN",
+        "description": "ATMOSPHERIC & OCEANIC SCIENCES"
+    },
+    {
+        "subjectCode": "660",
+        "shortDescription": "MUSIC",
+        "description": "MUSIC"
+    },
+    {
+        "subjectCode": "664",
+        "shortDescription": "MUS PERF",
+        "description": "MUSIC-PERFORMANCE"
+    },
+    {
+        "subjectCode": "672",
+        "shortDescription": "NAV SCI",
+        "description": "NAVAL SCIENCE"
+    },
+    {
+        "subjectCode": "694",
+        "shortDescription": "NUTR SCI",
+        "description": "NUTRITIONAL SCIENCES"
+    },
+    {
+        "subjectCode": "718",
+        "shortDescription": "PHM SCI",
+        "description": "PHARMACEUTICAL SCIENCES"
+    },
+    {
+        "subjectCode": "736",
+        "shortDescription": "PHILOS",
+        "description": "PHILOSOPHY"
+    },
+    {
+        "subjectCode": "741",
+        "shortDescription": "DANCE",
+        "description": "DANCE"
+    },
+    {
+        "subjectCode": "742",
+        "shortDescription": "KINES",
+        "description": "KINESIOLOGY"
+    },
+    {
+        "subjectCode": "754",
+        "shortDescription": "PHYSICS",
+        "description": "PHYSICS"
+    },
+    {
+        "subjectCode": "760",
+        "shortDescription": "PLANTSCI",
+        "description": "PLANT SCIENCE"
+    },
+    {
+        "subjectCode": "766",
+        "shortDescription": "PL PATH",
+        "description": "PLANT PATHOLOGY"
+    },
+    {
+        "subjectCode": "778",
+        "shortDescription": "POLI SCI",
+        "description": "POLITICAL SCIENCE"
+    },
+    {
+        "subjectCode": "782",
+        "shortDescription": "PORTUG",
+        "description": "PORTUGUESE (SPANISH & PORTUG)"
+    },
+    {
+        "subjectCode": "820",
+        "shortDescription": "PSYCH",
+        "description": "PSYCHOLOGY"
+    },
+    {
+        "subjectCode": "826",
+        "shortDescription": "PUB AFFR",
+        "description": "PUBLIC AFFAIRS & PUBLIC POLICY"
+    },
+    {
+        "subjectCode": "856",
+        "shortDescription": "RELIG ST",
+        "description": "RELIGIOUS STUDIES"
+    },
+    {
+        "subjectCode": "864",
+        "shortDescription": "C&E SOC",
+        "description": "COMMUNITY & ENVIRONMENTAL SOC"
+    },
+    {
+        "subjectCode": "872",
+        "shortDescription": "SCAND ST",
+        "description": "SCANDINAVIAN STUDIES"
+    },
+    {
+        "subjectCode": "875",
+        "shortDescription": "STS",
+        "description": "SCIENCE & TECHNOLOGY STUDIES"
+    },
+    {
+        "subjectCode": "888",
+        "shortDescription": "SLAVIC",
+        "description": "SLAVIC (SLAVIC LANGUAGES)"
+    },
+    {
+        "subjectCode": "900",
+        "shortDescription": "SOC",
+        "description": "SOCIOLOGY"
+    },
+    {
+        "subjectCode": "908",
+        "shortDescription": "SOIL SCI",
+        "description": "SOIL SCIENCE"
+    },
+    {
+        "subjectCode": "912",
+        "shortDescription": "SPANISH",
+        "description": "SPANISH (SPANISH AND PORTUG)"
+    },
+    {
+        "subjectCode": "932",
+        "shortDescription": "STAT",
+        "description": "STATISTICS"
+    },
+    {
+        "subjectCode": "942",
+        "shortDescription": "THEATRE",
+        "description": "THEATRE AND DRAMA"
+    },
+    {
+        "subjectCode": "944",
+        "shortDescription": "URB R PL",
+        "description": "URBAN AND REGIONAL PLANNING"
+    },
+    {
+        "subjectCode": "963",
+        "shortDescription": "GEN&WS",
+        "description": "GENDER AND WOMENS STUDIES"
+    },
+    {
+        "subjectCode": "970",
+        "shortDescription": "ZOOLOGY",
+        "description": "ZOOLOGY"
+    }
+]
