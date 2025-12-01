@@ -68,6 +68,13 @@ function switchView(viewName) {
   tabs.search.classList.toggle('active', viewName === 'search');
 
   if (viewName === 'watch') loadWatchlist();
+  
+  if (viewName === 'credits') {
+    const iframe = document.getElementById('kofiframe');
+    if (iframe && !iframe.src && iframe.dataset.src) {
+        iframe.src = iframe.dataset.src;
+    }
+  }
 }
 
 // --- Helpers for Time/Date ---
