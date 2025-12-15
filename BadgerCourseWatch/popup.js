@@ -15,7 +15,7 @@ const tabs = { watch: document.getElementById('tab-watch'), search: document.get
 const searchResultsDiv = document.getElementById('search-results');
 const sectionResultsDiv = document.getElementById('section-results');
 const sectionListDiv = document.getElementById('section-list');
-let currentSelectedCourse = null; 
+let currentSelectedCourse = null;
 
 // --- Setup Functions ---
 function populateDropdowns() {
@@ -30,7 +30,7 @@ function populateDropdowns() {
   });
 
   const defaultOpt = document.createElement('option');
-  defaultOpt.value = ""; 
+  defaultOpt.value = "";
   defaultOpt.textContent = "All Subjects (None)";
   subjectSelect.appendChild(defaultOpt);
 
@@ -63,16 +63,16 @@ function switchView(viewName) {
   views.search.classList.toggle('active', viewName === 'search');
   views.credits.classList.toggle('hidden', viewName !== 'credits');
   views.credits.classList.toggle('active', viewName === 'credits');
-  
+
   tabs.watch.classList.toggle('active', viewName === 'watch');
   tabs.search.classList.toggle('active', viewName === 'search');
 
   if (viewName === 'watch') loadWatchlist();
-  
+
   if (viewName === 'credits') {
     const iframe = document.getElementById('kofiframe');
     if (iframe && !iframe.src && iframe.dataset.src) {
-        iframe.src = iframe.dataset.src;
+      iframe.src = iframe.dataset.src;
     }
   }
 }
@@ -119,15 +119,15 @@ async function performSearch() {
   sectionResultsDiv.classList.add('hidden');
 
   const filters = [];
-  if (subject) { 
+  if (subject) {
     filters.push({ term: { "subject.subjectCode": subject } });
   }
 
   try {
     const payload = {
       selectedTerm: term,
-      queryString: keyword, 
-      filters: filters, 
+      queryString: keyword,
+      filters: filters,
       page: 1,
       pageSize: 50,
       sortOrder: "SCORE"
@@ -167,14 +167,14 @@ function renderSearchResults(hits) {
 
     let courseTitle = hit.title;
     if (hit.topics && hit.topics.length > 0) {
-        courseTitle = `${hit.title}: ${hit.topics[0].shortDescription}`;
+      courseTitle = `${hit.title}: ${hit.topics[0].shortDescription}`;
     }
 
     div.innerHTML = `
       <strong>${hit.courseDesignation}</strong><br>
       <span style="font-size: 0.9em;">${courseTitle}</span>
     `;
-    
+
     div.addEventListener('click', () => loadSections(hit));
     searchResultsDiv.appendChild(div);
   });
@@ -183,10 +183,10 @@ function renderSearchResults(hits) {
 async function loadSections(courseHit) {
   const statusMsg = document.getElementById('status-msg');
   statusMsg.textContent = "Loading sections...";
-  
+
   let fullCourseName = `${courseHit.courseDesignation}: ${courseHit.title}`;
   if (courseHit.topics && courseHit.topics.length > 0) {
-      fullCourseName = `${courseHit.courseDesignation}: ${courseHit.topics[0].shortDescription}`;
+    fullCourseName = `${courseHit.courseDesignation}: ${courseHit.topics[0].shortDescription}`;
   }
 
   currentSelectedCourse = {
@@ -221,44 +221,44 @@ function renderSections(packages) {
 
   packages.forEach(pkg => {
     let targetSec = pkg.sections.find(s => s.classUniqueId.classNumber === pkg.enrollmentClassNumber);
-    
+
     if (!targetSec && pkg.sections.length > 0) {
-        targetSec = pkg.sections[0];
+      targetSec = pkg.sections[0];
     }
 
     if (!targetSec) return;
 
     // --- EXTRACT MEETING INFO ---
     let meetingInfo = '<span style="color:#666; font-style:italic;">No meeting time</span>';
-    
+
     if (targetSec.classMeetings && targetSec.classMeetings.length > 0) {
-        const meetings = targetSec.classMeetings.filter(m => m.meetingType === 'CLASS');
-        
-        if (meetings.length > 0) {
-            meetingInfo = meetings.map(m => {
-                const days = m.meetingDays || '';
-                const time = `${formatTime(m.meetingTimeStart)} - ${formatTime(m.meetingTimeEnd)}`;
-                //const dates = `${formatDate(m.startDate)} to ${formatDate(m.endDate)}`;
-                return `<div>${days} ${time}<br></div>`; // <span style="font-size:0.85em; color:#888;">${dates}</span></div>`;
-            }).join('');
-        }
+      const meetings = targetSec.classMeetings.filter(m => m.meetingType === 'CLASS');
+
+      if (meetings.length > 0) {
+        meetingInfo = meetings.map(m => {
+          const days = m.meetingDays || '';
+          const time = `${formatTime(m.meetingTimeStart)} - ${formatTime(m.meetingTimeEnd)}`;
+          //const dates = `${formatDate(m.startDate)} to ${formatDate(m.endDate)}`;
+          return `<div>${days} ${time}<br></div>`; // <span style="font-size:0.85em; color:#888;">${dates}</span></div>`;
+        }).join('');
+      }
     }
     // ----------------------------
 
     const enrollment = targetSec.enrollmentStatus;
     const seats = enrollment.openSeats;
     const waitlistOpen = enrollment.openWaitlistSpots;
-    
+
     let status = "CLOSED";
     if (seats > 0) {
       status = "OPEN";
     } else if (waitlistOpen > 0) {
       status = "WAITLISTED";
     }
-    
+
     const row = document.createElement('div');
     row.className = 'section-row';
-    
+
     // We use encodeURIComponent to safely store the HTML string in a data attribute
     row.innerHTML = `
       <label>
@@ -283,7 +283,7 @@ function renderSections(packages) {
 function addToWatchlist() {
   const sectionListDiv = document.getElementById('section-list');
   const checkboxes = sectionListDiv.querySelectorAll('input[type="checkbox"]:checked');
-  
+
   if (checkboxes.length === 0) return;
 
   chrome.storage.local.get(['watchlist'], (result) => {
@@ -298,11 +298,11 @@ function addToWatchlist() {
 
       const sectionNum = cb.getAttribute('data-section');
       const sectionType = cb.getAttribute('data-type');
-      
+
       // Decode the stored HTML string for meetings
       const meetingsHtml = decodeURIComponent(cb.getAttribute('data-meetings'));
 
-      const uniqueId = `${currentSelectedCourse.termCode}-${cb.value}`; 
+      const uniqueId = `${currentSelectedCourse.termCode}-${cb.value}`;
 
       if (!watchlist.find(item => item.uniqueId === uniqueId)) {
         watchlist.push({
@@ -317,8 +317,7 @@ function addToWatchlist() {
           lastStatus: cb.getAttribute('data-status'),
           lastSeats: cb.getAttribute('data-seats'),
           enrollmentClassNumber: parseInt(cb.value),
-          isMuted: false,
-          isWaitlistMuted: false
+          notificationMode: 'ALL' // Default: Notify for everything
         });
         addedCount++;
       }
@@ -334,7 +333,7 @@ function addToWatchlist() {
 
 function loadWatchlist() {
   const container = document.getElementById('watchlist-container');
-  
+
   chrome.storage.local.get(['watchlist'], (result) => {
     const watchlist = result.watchlist || [];
     container.innerHTML = '';
@@ -343,14 +342,28 @@ function loadWatchlist() {
       container.innerHTML = '<p class="empty-msg">No courses being watched.</p>';
       return;
     }
-
     watchlist.forEach(item => {
+      // --- MIGRATION Logic on read ---
+      if (!item.notificationMode) {
+        if (item.isMuted) {
+          item.notificationMode = 'NONE';
+        } else if (item.isWaitlistMuted) {
+          item.notificationMode = 'OPEN_ONLY';
+        } else {
+          item.notificationMode = 'ALL';
+        }
+      }
+      // -------------------------------
+
       const div = document.createElement('div');
-      div.className = `watch-item ${item.isMuted ? 'muted' : ''}`;
-      
-      const muteIcon = item.isMuted ? '🔕' : '🔔';
-      const muteTitle = item.isMuted ? 'Unmute alerts' : 'Mute alerts';
-      const muteWaitlist = item.isWaitlistMuted ? 'Unmute waitlist' : 'Mute waitlist'
+      const isMuted = item.notificationMode === 'NONE';
+      div.className = `watch-item ${isMuted ? 'muted' : ''}`;
+
+      // Determine selected state for dropdown
+      const selAll = item.notificationMode === 'ALL' ? 'selected' : '';
+      const selOpen = item.notificationMode === 'OPEN_ONLY' ? 'selected' : '';
+      const selWait = item.notificationMode === 'WAITLIST_ONLY' ? 'selected' : '';
+      const selNone = item.notificationMode === 'NONE' ? 'selected' : '';
 
       div.innerHTML = `
         <div class="watch-info">
@@ -363,28 +376,26 @@ function loadWatchlist() {
         </div>
         <div style="text-align:right;">
            <span class="status-badge status-${item.lastStatus}">${item.lastStatus}</span>
-           <div style="margin-top: 1px;">
-            <div style="display: flex">
-              <button class="btn-wicon btn-waitlistMute" title="${muteWaitlist}">${muteWaitlist}</button>
-              <div style="margin-right: 2px;"></div>
-              <button class="btn-icon btn-mute" title="${muteTitle}">${muteIcon}</button>
+           <div style="margin-top: 6px;">
+              <select class="notification-mode-select" data-id="${item.uniqueId}" style="width: 104px; font-size: 11px; padding: 2px;">
+                  <option value="ALL" ${selAll}>🔔 All Alerts</option>
+                  <option value="OPEN_ONLY" ${selOpen}>🟢 Open Only</option>
+                  <option value="WAITLIST_ONLY" ${selWait}>🟠 Waitlist Only</option>
+                  <option value="NONE" ${selNone}>🔕 Muted</option>
+              </select>
+              <div style="margin-top: 4px; text-align: right;">
+                  <button class="btn-icon btn-delete" title="Remove" style="font-size: 14px; color: #999;">✕</button>
               </div>
-                <div style="margin-top: 4px;">
-                    <button class="btn-icon btn-delete" title="Remove">✕</button>
-                </div>
            </div>
         </div>
       `;
-      
-      div.querySelector('.btn-mute').addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleMute(item.uniqueId);
-      });
 
-      div.querySelector('.btn-waitlistMute').addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleWaitlistMute(item.uniqueId);
+      const select = div.querySelector('.notification-mode-select');
+      select.addEventListener('change', (e) => {
+        updateNotificationMode(item.uniqueId, e.target.value);
       });
+      // Prevent click from bubbling to possible parent onclicks (if any)
+      select.addEventListener('click', (e) => e.stopPropagation());
 
       div.querySelector('.btn-delete').addEventListener('click', (e) => {
         e.stopPropagation();
@@ -396,25 +407,17 @@ function loadWatchlist() {
   });
 }
 
-function toggleMute(uniqueId) {
+function updateNotificationMode(uniqueId, newMode) {
   chrome.storage.local.get(['watchlist'], (result) => {
     const watchlist = result.watchlist || [];
     const itemIndex = watchlist.findIndex(i => i.uniqueId === uniqueId);
-    
-    if (itemIndex > -1) {
-      watchlist[itemIndex].isMuted = !watchlist[itemIndex].isMuted;
-      chrome.storage.local.set({ watchlist }, loadWatchlist);
-    }
-  });
-}
 
-function toggleWaitlistMute(uniqueId) {
-  chrome.storage.local.get(['watchlist'], (result) => {
-    const watchlist = result.watchlist || [];
-    const itemIndex = watchlist.findIndex(i => i.uniqueId === uniqueId);
-    
     if (itemIndex > -1) {
-      watchlist[itemIndex].isWaitlistMuted = !watchlist[itemIndex].isWaitlistMuted;
+      watchlist[itemIndex].notificationMode = newMode;
+      // Clean up old properties if they exist, to avoid confusion
+      delete watchlist[itemIndex].isMuted;
+      delete watchlist[itemIndex].isWaitlistMuted;
+
       chrome.storage.local.set({ watchlist }, loadWatchlist);
     }
   });
