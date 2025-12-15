@@ -98,11 +98,11 @@ async function checkEnrollment() {
             let status = "CLOSED";
             if (seats > 0 && waitlistCapacity == 0) {
               status = "OPEN";
-            } else if (seats > 0 && waitlistCapacity > 0 && waitlistOpen > 0) {
+            } else if (seats > 0 && waitlistCapacity > 0 && waitlistOpen == waitlistCapacity) {
               status = "OPEN";
             } else if (seats > 0 && waitlistCapacity > 0 && waitlistOpen == 0) {
               status = "CLOSED";
-            } else if (waitlistCapacity > 0 && waitlistOpen > 0) {
+            } else if (waitlistCapacity > 0 && waitlistOpen > 0 && waitlistOpen <= waitlistCapacity) {
               status = "WAITLISTED";
             }
 
