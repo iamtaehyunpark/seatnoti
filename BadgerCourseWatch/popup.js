@@ -248,11 +248,16 @@ function renderSections(packages) {
     const enrollment = targetSec.enrollmentStatus;
     const seats = enrollment.openSeats;
     const waitlistOpen = enrollment.openWaitlistSpots;
+    const waitlistCapacity = enrollment.waitlistCapacity;
 
     let status = "CLOSED";
-    if (seats > 0) {
+    if (seats > 0 && waitlistCapacity == 0) {
       status = "OPEN";
-    } else if (waitlistOpen > 0) {
+    } else if (seats > 0 && waitlistCapacity > 0 && waitlistOpen == waitlistCapacity) {
+      status = "OPEN";
+    } else if (seats > 0 && waitlistCapacity > 0 && waitlistOpen == 0) {
+      status = "CLOSED";
+    } else if (waitlistCapacity > 0 && waitlistOpen > 0 && waitlistOpen <= waitlistCapacity) {
       status = "WAITLISTED";
     }
 
