@@ -16,7 +16,7 @@ observer.observe(document.body, { childList: true, subtree: true });
 function injectExportButton(container) {
     const btn = document.createElement('button');
     btn.id = 'export-ics-btn';
-    btn.innerText = 'Export ICS';
+    btn.innerText = 'Export to Calendar';
 
     // Style to match material design look with UW Madison red theme
     btn.style.cssText = `
