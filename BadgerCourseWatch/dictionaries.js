@@ -1,7 +1,7 @@
 export const TERMS = [
-    { label: "Spring 2026", value: "1264" },
-    { label: "Fall 2025", value: "1262" },
-    { label: "Summer 2025", value: "1260" }
+    { label: "Fall 2026", value: "1272" },
+    { label: "Summer 2026", value: "1266" },
+    { label: "Spring 2026", value: "1264" }
 ];
 
 export const SUBJECTS = [
