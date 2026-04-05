@@ -1,0 +1,1338 @@
+fetch("https://enroll.wisc.edu/scheduling/results?termCode=1264",
+{
+    "headers": {
+        "accept": "application/json, text/plain, */*",
+        "accept-language": "en-US,en;q=0.9,ko;q=0.8",
+        "priority": "u=1, i",
+        "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-origin"
+    },
+    "referrer": "https://enroll.wisc.edu/scheduler",
+    "body": null,
+    "method": "GET",
+    "mode": "cors",
+    "credentials": "include"
+});
+
+fetch content inside (json): {
+    "bestSolution": {
+        "schedulingEntities": [
+            {
+                "courseId": "004244",
+                "subjectCode": "266",
+                "name": "Machine Organization and Programming",
+                "catalogNumber": "354",
+                "subjectShortDescription": "COMP SCI",
+                "courseOrigin": "ENROLLED",
+                "selectedEnrollmentPackage": {
+                    "packageId": "1264-A1-266-354-002",
+                    "meetings": [
+                        {
+                            "meetingOrExamNumber": "1",
+                            "meetingType": "CLASS",
+                            "meetingTimeStart": 68400000,
+                            "meetingTimeEnd": 72900000,
+                            "meetingDays": "TR",
+                            "meetingDaysList": [
+                                "TUESDAY",
+                                "THURSDAY"
+                            ],
+                            "building": {
+                                "buildingCode": "0215",
+                                "buildingName": "Morgridge Hall",
+                                "streetAddress": "1205 University Avenue",
+                                "latitude": 43.07283433199304,
+                                "longitude": -89.4067958598904,
+                                "location": null
+                            },
+                            "room": "1570",
+                            "examDate": 0,
+                            "monday": false,
+                            "tuesday": false,
+                            "wednesday": false,
+                            "thursday": false,
+                            "friday": false,
+                            "saturday": false,
+                            "sunday": false,
+                            "startTime": 68400000,
+                            "endTime": 72900000,
+                            "startDate": 0,
+                            "endDate": 0,
+                            "daysOfWeek": [
+                                "TUESDAY",
+                                "THURSDAY"
+                            ],
+                            "sectionType": "LEC",
+                            "sectionNumber": "002",
+                            "buildingName": "Morgridge Hall",
+                            "courseId": "004244",
+                            "subjectCode": "266",
+                            "instructors": [
+                                "Gary Dahl"
+                            ]
+                        }
+                    ],
+                    "classNumbers": [
+                        76124
+                    ],
+                    "classNumber": 76124,
+                    "packageEnrollmentStatus": {
+                        "availableSeats": 3,
+                        "waitlistTotal": 0,
+                        "status": "OPEN"
+                    },
+                    "enrollmentOptions": {
+                        "classPermissionNumberNeeded": false,
+                        "relatedClasses": [],
+                        "honors": false,
+                        "waitlist": true,
+                        "relatedClassNumber": false
+                    },
+                    "exams": [
+                        {
+                            "meetingOrExamNumber": "1",
+                            "meetingType": "EXAM",
+                            "meetingTimeStart": 66300000,
+                            "meetingTimeEnd": 73500000,
+                            "meetingDays": "",
+                            "meetingDaysList": [],
+                            "building": {
+                                "buildingCode": "0000",
+                                "buildingName": "PENDING",
+                                "streetAddress": "",
+                                "latitude": 0,
+                                "longitude": 0,
+                                "location": null
+                            },
+                            "room": "ROOM",
+                            "examDate": 1777870800000,
+                            "monday": false,
+                            "tuesday": false,
+                            "wednesday": false,
+                            "thursday": false,
+                            "friday": false,
+                            "saturday": false,
+                            "sunday": false,
+                            "startTime": 66300000,
+                            "endTime": 73500000,
+                            "startDate": 0,
+                            "endDate": 0,
+                            "daysOfWeek": [],
+                            "sectionType": "LEC",
+                            "sectionNumber": "002",
+                            "buildingName": "PENDING",
+                            "courseId": "",
+                            "subjectCode": "",
+                            "instructors": null
+                        }
+                    ],
+                    "creditRange": "3"
+                }
+            },
+            {
+                "courseId": "024798",
+                "subjectCode": "266",
+                "name": "Programming III",
+                "catalogNumber": "400",
+                "subjectShortDescription": "COMP SCI",
+                "courseOrigin": "ENROLLED",
+                "selectedEnrollmentPackage": {
+                    "packageId": "1264-A1-266-400-001",
+                    "meetings": [
+                        {
+                            "meetingOrExamNumber": "1",
+                            "meetingType": "CLASS",
+                            "meetingTimeStart": 69600000,
+                            "meetingTimeEnd": 72600000,
+                            "meetingDays": "MWF",
+                            "meetingDaysList": [
+                                "MONDAY",
+                                "WEDNESDAY",
+                                "FRIDAY"
+                            ],
+                            "building": {
+                                "buildingCode": "0215",
+                                "buildingName": "Morgridge Hall",
+                                "streetAddress": "1205 University Avenue",
+                                "latitude": 43.07283433199304,
+                                "longitude": -89.4067958598904,
+                                "location": null
+                            },
+                            "room": "1570",
+                            "examDate": 0,
+                            "monday": false,
+                            "tuesday": false,
+                            "wednesday": false,
+                            "thursday": false,
+                            "friday": false,
+                            "saturday": false,
+                            "sunday": false,
+                            "startTime": 69600000,
+                            "endTime": 72600000,
+                            "startDate": 0,
+                            "endDate": 0,
+                            "daysOfWeek": [
+                                "MONDAY",
+                                "WEDNESDAY",
+                                "FRIDAY"
+                            ],
+                            "sectionType": "LEC",
+                            "sectionNumber": "001",
+                            "buildingName": "Morgridge Hall",
+                            "courseId": "024798",
+                            "subjectCode": "266",
+                            "instructors": [
+                                "Florian Heimerl"
+                            ]
+                        }
+                    ],
+                    "classNumbers": [
+                        65210
+                    ],
+                    "classNumber": 65210,
+                    "packageEnrollmentStatus": {
+                        "availableSeats": 6,
+                        "waitlistTotal": 0,
+                        "status": "OPEN"
+                    },
+                    "enrollmentOptions": {
+                        "classPermissionNumberNeeded": false,
+                        "relatedClasses": [],
+                        "honors": false,
+                        "waitlist": false,
+                        "relatedClassNumber": false
+                    },
+                    "exams": [
+                        {
+                            "meetingOrExamNumber": "1",
+                            "meetingType": "EXAM",
+                            "meetingTimeStart": 83100000,
+                            "meetingTimeEnd": 90300000,
+                            "meetingDays": "",
+                            "meetingDaysList": [],
+                            "building": {
+                                "buildingCode": "0000",
+                                "buildingName": "PENDING",
+                                "streetAddress": "",
+                                "latitude": 0,
+                                "longitude": 0,
+                                "location": null
+                            },
+                            "room": "ROOM",
+                            "examDate": 1777957200000,
+                            "monday": false,
+                            "tuesday": false,
+                            "wednesday": false,
+                            "thursday": false,
+                            "friday": false,
+                            "saturday": false,
+                            "sunday": false,
+                            "startTime": 83100000,
+                            "endTime": 90300000,
+                            "startDate": 0,
+                            "endDate": 0,
+                            "daysOfWeek": [],
+                            "sectionType": "LEC",
+                            "sectionNumber": "001",
+                            "buildingName": "PENDING",
+                            "courseId": "",
+                            "subjectCode": "",
+                            "instructors": null
+                        }
+                    ],
+                    "creditRange": "3"
+                }
+            },
+            {
+                "courseId": "002897",
+                "subjectCode": "230",
+                "name": "Development of the Young Child",
+                "catalogNumber": "262",
+                "subjectShortDescription": "HDFS",
+                "courseOrigin": "ENROLLED",
+                "selectedEnrollmentPackage": {
+                    "packageId": "1264-OA1-230-262-001",
+                    "meetings": [
+                        {
+                            "meetingOrExamNumber": "1",
+                            "meetingType": "CLASS",
+                            "meetingTimeStart": 0,
+                            "meetingTimeEnd": 0,
+                            "meetingDays": "",
+                            "meetingDaysList": [],
+                            "building": {
+                                "buildingCode": "0000C",
+                                "buildingName": "ONLINE",
+                                "streetAddress": "",
+                                "latitude": 0,
+                                "longitude": 0,
+                                "location": null
+                            },
+                            "room": "",
+                            "examDate": 0,
+                            "monday": false,
+                            "tuesday": false,
+                            "wednesday": false,
+                            "thursday": false,
+                            "friday": false,
+                            "saturday": false,
+                            "sunday": false,
+                            "startTime": 0,
+                            "endTime": 0,
+                            "startDate": 0,
+                            "endDate": 0,
+                            "daysOfWeek": [],
+                            "sectionType": "LEC",
+                            "sectionNumber": "001",
+                            "buildingName": "ONLINE",
+                            "courseId": "002897",
+                            "subjectCode": "230",
+                            "instructors": [
+                                "Claire Barrett",
+                                "Ximena Ibinarriaga Soltero",
+                                "Yibo Hu"
+                            ]
+                        }
+                    ],
+                    "classNumbers": [
+                        68838
+                    ],
+                    "classNumber": 68838,
+                    "packageEnrollmentStatus": {
+                        "availableSeats": 2,
+                        "waitlistTotal": 0,
+                        "status": "OPEN"
+                    },
+                    "enrollmentOptions": {
+                        "classPermissionNumberNeeded": false,
+                        "relatedClasses": [],
+                        "honors": false,
+                        "waitlist": false,
+                        "relatedClassNumber": false
+                    },
+                    "exams": [],
+                    "creditRange": "3"
+                }
+            },
+            {
+                "courseId": "024185",
+                "subjectCode": "200",
+                "name": "Molecules to Life and the Nature of Science",
+                "catalogNumber": "104",
+                "subjectShortDescription": "BIOCHEM",
+                "courseOrigin": "ENROLLED",
+                "selectedEnrollmentPackage": {
+                    "packageId": "1264-A1-200-104-002",
+                    "meetings": [
+                        {
+                            "meetingOrExamNumber": "1",
+                            "meetingType": "CLASS",
+                            "meetingTimeStart": 0,
+                            "meetingTimeEnd": 0,
+                            "meetingDays": "",
+                            "meetingDaysList": [],
+                            "building": {
+                                "buildingCode": "0000C",
+                                "buildingName": "ONLINE",
+                                "streetAddress": "",
+                                "latitude": 0,
+                                "longitude": 0,
+                                "location": null
+                            },
+                            "room": "",
+                            "examDate": 0,
+                            "monday": false,
+                            "tuesday": false,
+                            "wednesday": false,
+                            "thursday": false,
+                            "friday": false,
+                            "saturday": false,
+                            "sunday": false,
+                            "startTime": 0,
+                            "endTime": 0,
+                            "startDate": 0,
+                            "endDate": 0,
+                            "daysOfWeek": [],
+                            "sectionType": "LEC",
+                            "sectionNumber": "002",
+                            "buildingName": "ONLINE",
+                            "courseId": "024185",
+                            "subjectCode": "200",
+                            "instructors": [
+                                "Richard Amasino",
+                                "Mario Pennella"
+                            ]
+                        }
+                    ],
+                    "classNumbers": [
+                        68669
+                    ],
+                    "classNumber": 68669,
+                    "packageEnrollmentStatus": {
+                        "availableSeats": 0,
+                        "waitlistTotal": 0,
+                        "status": "WAITLISTED"
+                    },
+                    "enrollmentOptions": {
+                        "classPermissionNumberNeeded": false,
+                        "relatedClasses": [],
+                        "honors": false,
+                        "waitlist": true,
+                        "relatedClassNumber": false
+                    },
+                    "exams": [
+                        {
+                            "meetingOrExamNumber": "1",
+                            "meetingType": "EXAM",
+                            "meetingTimeStart": 83100000,
+                            "meetingTimeEnd": 90300000,
+                            "meetingDays": "",
+                            "meetingDaysList": [],
+                            "building": {
+                                "buildingCode": "",
+                                "buildingName": "",
+                                "streetAddress": "",
+                                "latitude": 0,
+                                "longitude": 0,
+                                "location": null
+                            },
+                            "room": "",
+                            "examDate": 1778043600000,
+                            "monday": false,
+                            "tuesday": false,
+                            "wednesday": false,
+                            "thursday": false,
+                            "friday": false,
+                            "saturday": false,
+                            "sunday": false,
+                            "startTime": 83100000,
+                            "endTime": 90300000,
+                            "startDate": 0,
+                            "endDate": 0,
+                            "daysOfWeek": [],
+                            "sectionType": "LEC",
+                            "sectionNumber": "002",
+                            "buildingName": "",
+                            "courseId": "",
+                            "subjectCode": "",
+                            "instructors": null
+                        }
+                    ],
+                    "creditRange": "3"
+                }
+            },
+            {
+                "courseId": "024324",
+                "subjectCode": "352",
+                "name": "Topics in Literature and Film",
+                "catalogNumber": "176",
+                "subjectShortDescription": "ENGL",
+                "courseOrigin": "ENROLLED",
+                "selectedEnrollmentPackage": {
+                    "packageId": "1264-A1-352-176-001",
+                    "meetings": [
+                        {
+                            "meetingOrExamNumber": "1",
+                            "meetingType": "CLASS",
+                            "meetingTimeStart": 61200000,
+                            "meetingTimeEnd": 65700000,
+                            "meetingDays": "TR",
+                            "meetingDaysList": [
+                                "TUESDAY",
+                                "THURSDAY"
+                            ],
+                            "building": {
+                                "buildingCode": "0048",
+                                "buildingName": "Van Vleck Hall",
+                                "streetAddress": "480 Lincoln Dr.",
+                                "latitude": 43.07480652279825,
+                                "longitude": -89.40493702344519,
+                                "location": null
+                            },
+                            "room": "B313",
+                            "examDate": 0,
+                            "monday": false,
+                            "tuesday": false,
+                            "wednesday": false,
+                            "thursday": false,
+                            "friday": false,
+                            "saturday": false,
+                            "sunday": false,
+                            "startTime": 61200000,
+                            "endTime": 65700000,
+                            "startDate": 0,
+                            "endDate": 0,
+                            "daysOfWeek": [
+                                "TUESDAY",
+                                "THURSDAY"
+                            ],
+                            "sectionType": "LEC",
+                            "sectionNumber": "001",
+                            "buildingName": "Van Vleck Hall",
+                            "courseId": "024324",
+                            "subjectCode": "352",
+                            "instructors": [
+                                "Sarah Wells"
+                            ]
+                        }
+                    ],
+                    "classNumbers": [
+                        70679
+                    ],
+                    "classNumber": 70679,
+                    "packageEnrollmentStatus": {
+                        "availableSeats": 2,
+                        "waitlistTotal": 0,
+                        "status": "OPEN"
+                    },
+                    "enrollmentOptions": {
+                        "classPermissionNumberNeeded": false,
+                        "relatedClasses": [],
+                        "honors": true,
+                        "waitlist": false,
+                        "relatedClassNumber": false
+                    },
+                    "exams": [
+                        {
+                            "meetingOrExamNumber": "1",
+                            "meetingType": "EXAM",
+                            "meetingTimeStart": 57900000,
+                            "meetingTimeEnd": 65100000,
+                            "meetingDays": "",
+                            "meetingDaysList": [],
+                            "building": {
+                                "buildingCode": "0000",
+                                "buildingName": "PENDING",
+                                "streetAddress": "",
+                                "latitude": 0,
+                                "longitude": 0,
+                                "location": null
+                            },
+                            "room": "ROOM",
+                            "examDate": 1778043600000,
+                            "monday": false,
+                            "tuesday": false,
+                            "wednesday": false,
+                            "thursday": false,
+                            "friday": false,
+                            "saturday": false,
+                            "sunday": false,
+                            "startTime": 57900000,
+                            "endTime": 65100000,
+                            "startDate": 0,
+                            "endDate": 0,
+                            "daysOfWeek": [],
+                            "sectionType": "LEC",
+                            "sectionNumber": "001",
+                            "buildingName": "PENDING",
+                            "courseId": "",
+                            "subjectCode": "",
+                            "instructors": null
+                        }
+                    ],
+                    "creditRange": "3"
+                }
+            },
+            {
+                "courseId": "004280",
+                "subjectCode": "266",
+                "name": "Introduction to Artificial Intelligence",
+                "catalogNumber": "540",
+                "subjectShortDescription": "COMP SCI",
+                "courseOrigin": "ENROLLED",
+                "selectedEnrollmentPackage": {
+                    "packageId": "1264-A1-266-540-002",
+                    "meetings": [
+                        {
+                            "meetingOrExamNumber": "1",
+                            "meetingType": "CLASS",
+                            "meetingTimeStart": 73800000,
+                            "meetingTimeEnd": 78300000,
+                            "meetingDays": "TR",
+                            "meetingDaysList": [
+                                "TUESDAY",
+                                "THURSDAY"
+                            ],
+                            "building": {
+                                "buildingCode": "0470",
+                                "buildingName": "Brogden Psychology Building",
+                                "streetAddress": "1202 W. Johnson St.",
+                                "latitude": 43.07258389626221,
+                                "longitude": -89.40621825054812,
+                                "location": null
+                            },
+                            "room": "105",
+                            "examDate": 0,
+                            "monday": false,
+                            "tuesday": false,
+                            "wednesday": false,
+                            "thursday": false,
+                            "friday": false,
+                            "saturday": false,
+                            "sunday": false,
+                            "startTime": 73800000,
+                            "endTime": 78300000,
+                            "startDate": 0,
+                            "endDate": 0,
+                            "daysOfWeek": [
+                                "TUESDAY",
+                                "THURSDAY"
+                            ],
+                            "sectionType": "LEC",
+                            "sectionNumber": "002",
+                            "buildingName": "Brogden Psychology Building",
+                            "courseId": "004280",
+                            "subjectCode": "266",
+                            "instructors": [
+                                "Blerina Gkotse"
+                            ]
+                        }
+                    ],
+                    "classNumbers": [
+                        64628
+                    ],
+                    "classNumber": 64628,
+                    "packageEnrollmentStatus": {
+                        "availableSeats": 2,
+                        "waitlistTotal": 0,
+                        "status": "OPEN"
+                    },
+                    "enrollmentOptions": {
+                        "classPermissionNumberNeeded": false,
+                        "relatedClasses": [],
+                        "honors": false,
+                        "waitlist": false,
+                        "relatedClassNumber": false
+                    },
+                    "exams": [
+                        {
+                            "meetingOrExamNumber": "1",
+                            "meetingType": "EXAM",
+                            "meetingTimeStart": 66300000,
+                            "meetingTimeEnd": 73500000,
+                            "meetingDays": "",
+                            "meetingDaysList": [],
+                            "building": {
+                                "buildingCode": "0000",
+                                "buildingName": "PENDING",
+                                "streetAddress": "",
+                                "latitude": 0,
+                                "longitude": 0,
+                                "location": null
+                            },
+                            "room": "ROOM",
+                            "examDate": 1778130000000,
+                            "monday": false,
+                            "tuesday": false,
+                            "wednesday": false,
+                            "thursday": false,
+                            "friday": false,
+                            "saturday": false,
+                            "sunday": false,
+                            "startTime": 66300000,
+                            "endTime": 73500000,
+                            "startDate": 0,
+                            "endDate": 0,
+                            "daysOfWeek": [],
+                            "sectionType": "LEC",
+                            "sectionNumber": "002",
+                            "buildingName": "PENDING",
+                            "courseId": "",
+                            "subjectCode": "",
+                            "instructors": null
+                        }
+                    ],
+                    "creditRange": "3"
+                }
+            },
+            {
+                "name": "SCHEDULE-BLOCKS",
+                "courseOrigin": "SCHEDULE-BLOCKS",
+                "scheduleBlocks": []
+            }
+        ],
+        "hasConflicts": false,
+        "schedulingRequest": {
+            "termCode": "1264",
+            "cartItems": [],
+            "enrolled": [
+                65210,
+                76124,
+                68838,
+                68669,
+                70679,
+                64628
+            ],
+            "selectedPackages": {},
+            "options": {
+                "waitlistedPackages": false,
+                "specialGroupsPackages": false,
+                "allowConflicts": false,
+                "honorsOnlyPackages": false
+            }
+        }
+    },
+    "feasibleSolutions": [
+        {
+            "schedulingEntities": [
+                {
+                    "courseId": "004244",
+                    "subjectCode": "266",
+                    "name": "Machine Organization and Programming",
+                    "catalogNumber": "354",
+                    "subjectShortDescription": "COMP SCI",
+                    "courseOrigin": "ENROLLED",
+                    "selectedEnrollmentPackage": {
+                        "packageId": "1264-A1-266-354-002",
+                        "meetings": [
+                            {
+                                "meetingOrExamNumber": "1",
+                                "meetingType": "CLASS",
+                                "meetingTimeStart": 68400000,
+                                "meetingTimeEnd": 72900000,
+                                "meetingDays": "TR",
+                                "meetingDaysList": [
+                                    "TUESDAY",
+                                    "THURSDAY"
+                                ],
+                                "building": {
+                                    "buildingCode": "0215",
+                                    "buildingName": "Morgridge Hall",
+                                    "streetAddress": "1205 University Avenue",
+                                    "latitude": 43.07283433199304,
+                                    "longitude": -89.4067958598904,
+                                    "location": null
+                                },
+                                "room": "1570",
+                                "examDate": 0,
+                                "monday": false,
+                                "tuesday": false,
+                                "wednesday": false,
+                                "thursday": false,
+                                "friday": false,
+                                "saturday": false,
+                                "sunday": false,
+                                "startTime": 68400000,
+                                "endTime": 72900000,
+                                "startDate": 0,
+                                "endDate": 0,
+                                "daysOfWeek": [
+                                    "TUESDAY",
+                                    "THURSDAY"
+                                ],
+                                "sectionType": "LEC",
+                                "sectionNumber": "002",
+                                "buildingName": "Morgridge Hall",
+                                "courseId": "004244",
+                                "subjectCode": "266",
+                                "instructors": [
+                                    "Gary Dahl"
+                                ]
+                            }
+                        ],
+                        "classNumbers": [
+                            76124
+                        ],
+                        "classNumber": 76124,
+                        "packageEnrollmentStatus": {
+                            "availableSeats": 3,
+                            "waitlistTotal": 0,
+                            "status": "OPEN"
+                        },
+                        "enrollmentOptions": {
+                            "classPermissionNumberNeeded": false,
+                            "relatedClasses": [],
+                            "honors": false,
+                            "waitlist": true,
+                            "relatedClassNumber": false
+                        },
+                        "exams": [
+                            {
+                                "meetingOrExamNumber": "1",
+                                "meetingType": "EXAM",
+                                "meetingTimeStart": 66300000,
+                                "meetingTimeEnd": 73500000,
+                                "meetingDays": "",
+                                "meetingDaysList": [],
+                                "building": {
+                                    "buildingCode": "0000",
+                                    "buildingName": "PENDING",
+                                    "streetAddress": "",
+                                    "latitude": 0,
+                                    "longitude": 0,
+                                    "location": null
+                                },
+                                "room": "ROOM",
+                                "examDate": 1777870800000,
+                                "monday": false,
+                                "tuesday": false,
+                                "wednesday": false,
+                                "thursday": false,
+                                "friday": false,
+                                "saturday": false,
+                                "sunday": false,
+                                "startTime": 66300000,
+                                "endTime": 73500000,
+                                "startDate": 0,
+                                "endDate": 0,
+                                "daysOfWeek": [],
+                                "sectionType": "LEC",
+                                "sectionNumber": "002",
+                                "buildingName": "PENDING",
+                                "courseId": "",
+                                "subjectCode": "",
+                                "instructors": null
+                            }
+                        ],
+                        "creditRange": "3"
+                    }
+                },
+                {
+                    "courseId": "024798",
+                    "subjectCode": "266",
+                    "name": "Programming III",
+                    "catalogNumber": "400",
+                    "subjectShortDescription": "COMP SCI",
+                    "courseOrigin": "ENROLLED",
+                    "selectedEnrollmentPackage": {
+                        "packageId": "1264-A1-266-400-001",
+                        "meetings": [
+                            {
+                                "meetingOrExamNumber": "1",
+                                "meetingType": "CLASS",
+                                "meetingTimeStart": 69600000,
+                                "meetingTimeEnd": 72600000,
+                                "meetingDays": "MWF",
+                                "meetingDaysList": [
+                                    "MONDAY",
+                                    "WEDNESDAY",
+                                    "FRIDAY"
+                                ],
+                                "building": {
+                                    "buildingCode": "0215",
+                                    "buildingName": "Morgridge Hall",
+                                    "streetAddress": "1205 University Avenue",
+                                    "latitude": 43.07283433199304,
+                                    "longitude": -89.4067958598904,
+                                    "location": null
+                                },
+                                "room": "1570",
+                                "examDate": 0,
+                                "monday": false,
+                                "tuesday": false,
+                                "wednesday": false,
+                                "thursday": false,
+                                "friday": false,
+                                "saturday": false,
+                                "sunday": false,
+                                "startTime": 69600000,
+                                "endTime": 72600000,
+                                "startDate": 0,
+                                "endDate": 0,
+                                "daysOfWeek": [
+                                    "MONDAY",
+                                    "WEDNESDAY",
+                                    "FRIDAY"
+                                ],
+                                "sectionType": "LEC",
+                                "sectionNumber": "001",
+                                "buildingName": "Morgridge Hall",
+                                "courseId": "024798",
+                                "subjectCode": "266",
+                                "instructors": [
+                                    "Florian Heimerl"
+                                ]
+                            }
+                        ],
+                        "classNumbers": [
+                            65210
+                        ],
+                        "classNumber": 65210,
+                        "packageEnrollmentStatus": {
+                            "availableSeats": 6,
+                            "waitlistTotal": 0,
+                            "status": "OPEN"
+                        },
+                        "enrollmentOptions": {
+                            "classPermissionNumberNeeded": false,
+                            "relatedClasses": [],
+                            "honors": false,
+                            "waitlist": false,
+                            "relatedClassNumber": false
+                        },
+                        "exams": [
+                            {
+                                "meetingOrExamNumber": "1",
+                                "meetingType": "EXAM",
+                                "meetingTimeStart": 83100000,
+                                "meetingTimeEnd": 90300000,
+                                "meetingDays": "",
+                                "meetingDaysList": [],
+                                "building": {
+                                    "buildingCode": "0000",
+                                    "buildingName": "PENDING",
+                                    "streetAddress": "",
+                                    "latitude": 0,
+                                    "longitude": 0,
+                                    "location": null
+                                },
+                                "room": "ROOM",
+                                "examDate": 1777957200000,
+                                "monday": false,
+                                "tuesday": false,
+                                "wednesday": false,
+                                "thursday": false,
+                                "friday": false,
+                                "saturday": false,
+                                "sunday": false,
+                                "startTime": 83100000,
+                                "endTime": 90300000,
+                                "startDate": 0,
+                                "endDate": 0,
+                                "daysOfWeek": [],
+                                "sectionType": "LEC",
+                                "sectionNumber": "001",
+                                "buildingName": "PENDING",
+                                "courseId": "",
+                                "subjectCode": "",
+                                "instructors": null
+                            }
+                        ],
+                        "creditRange": "3"
+                    }
+                },
+                {
+                    "courseId": "002897",
+                    "subjectCode": "230",
+                    "name": "Development of the Young Child",
+                    "catalogNumber": "262",
+                    "subjectShortDescription": "HDFS",
+                    "courseOrigin": "ENROLLED",
+                    "selectedEnrollmentPackage": {
+                        "packageId": "1264-OA1-230-262-001",
+                        "meetings": [
+                            {
+                                "meetingOrExamNumber": "1",
+                                "meetingType": "CLASS",
+                                "meetingTimeStart": 0,
+                                "meetingTimeEnd": 0,
+                                "meetingDays": "",
+                                "meetingDaysList": [],
+                                "building": {
+                                    "buildingCode": "0000C",
+                                    "buildingName": "ONLINE",
+                                    "streetAddress": "",
+                                    "latitude": 0,
+                                    "longitude": 0,
+                                    "location": null
+                                },
+                                "room": "",
+                                "examDate": 0,
+                                "monday": false,
+                                "tuesday": false,
+                                "wednesday": false,
+                                "thursday": false,
+                                "friday": false,
+                                "saturday": false,
+                                "sunday": false,
+                                "startTime": 0,
+                                "endTime": 0,
+                                "startDate": 0,
+                                "endDate": 0,
+                                "daysOfWeek": [],
+                                "sectionType": "LEC",
+                                "sectionNumber": "001",
+                                "buildingName": "ONLINE",
+                                "courseId": "002897",
+                                "subjectCode": "230",
+                                "instructors": [
+                                    "Claire Barrett",
+                                    "Ximena Ibinarriaga Soltero",
+                                    "Yibo Hu"
+                                ]
+                            }
+                        ],
+                        "classNumbers": [
+                            68838
+                        ],
+                        "classNumber": 68838,
+                        "packageEnrollmentStatus": {
+                            "availableSeats": 2,
+                            "waitlistTotal": 0,
+                            "status": "OPEN"
+                        },
+                        "enrollmentOptions": {
+                            "classPermissionNumberNeeded": false,
+                            "relatedClasses": [],
+                            "honors": false,
+                            "waitlist": false,
+                            "relatedClassNumber": false
+                        },
+                        "exams": [],
+                        "creditRange": "3"
+                    }
+                },
+                {
+                    "courseId": "024185",
+                    "subjectCode": "200",
+                    "name": "Molecules to Life and the Nature of Science",
+                    "catalogNumber": "104",
+                    "subjectShortDescription": "BIOCHEM",
+                    "courseOrigin": "ENROLLED",
+                    "selectedEnrollmentPackage": {
+                        "packageId": "1264-A1-200-104-002",
+                        "meetings": [
+                            {
+                                "meetingOrExamNumber": "1",
+                                "meetingType": "CLASS",
+                                "meetingTimeStart": 0,
+                                "meetingTimeEnd": 0,
+                                "meetingDays": "",
+                                "meetingDaysList": [],
+                                "building": {
+                                    "buildingCode": "0000C",
+                                    "buildingName": "ONLINE",
+                                    "streetAddress": "",
+                                    "latitude": 0,
+                                    "longitude": 0,
+                                    "location": null
+                                },
+                                "room": "",
+                                "examDate": 0,
+                                "monday": false,
+                                "tuesday": false,
+                                "wednesday": false,
+                                "thursday": false,
+                                "friday": false,
+                                "saturday": false,
+                                "sunday": false,
+                                "startTime": 0,
+                                "endTime": 0,
+                                "startDate": 0,
+                                "endDate": 0,
+                                "daysOfWeek": [],
+                                "sectionType": "LEC",
+                                "sectionNumber": "002",
+                                "buildingName": "ONLINE",
+                                "courseId": "024185",
+                                "subjectCode": "200",
+                                "instructors": [
+                                    "Richard Amasino",
+                                    "Mario Pennella"
+                                ]
+                            }
+                        ],
+                        "classNumbers": [
+                            68669
+                        ],
+                        "classNumber": 68669,
+                        "packageEnrollmentStatus": {
+                            "availableSeats": 0,
+                            "waitlistTotal": 0,
+                            "status": "WAITLISTED"
+                        },
+                        "enrollmentOptions": {
+                            "classPermissionNumberNeeded": false,
+                            "relatedClasses": [],
+                            "honors": false,
+                            "waitlist": true,
+                            "relatedClassNumber": false
+                        },
+                        "exams": [
+                            {
+                                "meetingOrExamNumber": "1",
+                                "meetingType": "EXAM",
+                                "meetingTimeStart": 83100000,
+                                "meetingTimeEnd": 90300000,
+                                "meetingDays": "",
+                                "meetingDaysList": [],
+                                "building": {
+                                    "buildingCode": "",
+                                    "buildingName": "",
+                                    "streetAddress": "",
+                                    "latitude": 0,
+                                    "longitude": 0,
+                                    "location": null
+                                },
+                                "room": "",
+                                "examDate": 1778043600000,
+                                "monday": false,
+                                "tuesday": false,
+                                "wednesday": false,
+                                "thursday": false,
+                                "friday": false,
+                                "saturday": false,
+                                "sunday": false,
+                                "startTime": 83100000,
+                                "endTime": 90300000,
+                                "startDate": 0,
+                                "endDate": 0,
+                                "daysOfWeek": [],
+                                "sectionType": "LEC",
+                                "sectionNumber": "002",
+                                "buildingName": "",
+                                "courseId": "",
+                                "subjectCode": "",
+                                "instructors": null
+                            }
+                        ],
+                        "creditRange": "3"
+                    }
+                },
+                {
+                    "courseId": "024324",
+                    "subjectCode": "352",
+                    "name": "Topics in Literature and Film",
+                    "catalogNumber": "176",
+                    "subjectShortDescription": "ENGL",
+                    "courseOrigin": "ENROLLED",
+                    "selectedEnrollmentPackage": {
+                        "packageId": "1264-A1-352-176-001",
+                        "meetings": [
+                            {
+                                "meetingOrExamNumber": "1",
+                                "meetingType": "CLASS",
+                                "meetingTimeStart": 61200000,
+                                "meetingTimeEnd": 65700000,
+                                "meetingDays": "TR",
+                                "meetingDaysList": [
+                                    "TUESDAY",
+                                    "THURSDAY"
+                                ],
+                                "building": {
+                                    "buildingCode": "0048",
+                                    "buildingName": "Van Vleck Hall",
+                                    "streetAddress": "480 Lincoln Dr.",
+                                    "latitude": 43.07480652279825,
+                                    "longitude": -89.40493702344519,
+                                    "location": null
+                                },
+                                "room": "B313",
+                                "examDate": 0,
+                                "monday": false,
+                                "tuesday": false,
+                                "wednesday": false,
+                                "thursday": false,
+                                "friday": false,
+                                "saturday": false,
+                                "sunday": false,
+                                "startTime": 61200000,
+                                "endTime": 65700000,
+                                "startDate": 0,
+                                "endDate": 0,
+                                "daysOfWeek": [
+                                    "TUESDAY",
+                                    "THURSDAY"
+                                ],
+                                "sectionType": "LEC",
+                                "sectionNumber": "001",
+                                "buildingName": "Van Vleck Hall",
+                                "courseId": "024324",
+                                "subjectCode": "352",
+                                "instructors": [
+                                    "Sarah Wells"
+                                ]
+                            }
+                        ],
+                        "classNumbers": [
+                            70679
+                        ],
+                        "classNumber": 70679,
+                        "packageEnrollmentStatus": {
+                            "availableSeats": 2,
+                            "waitlistTotal": 0,
+                            "status": "OPEN"
+                        },
+                        "enrollmentOptions": {
+                            "classPermissionNumberNeeded": false,
+                            "relatedClasses": [],
+                            "honors": true,
+                            "waitlist": false,
+                            "relatedClassNumber": false
+                        },
+                        "exams": [
+                            {
+                                "meetingOrExamNumber": "1",
+                                "meetingType": "EXAM",
+                                "meetingTimeStart": 57900000,
+                                "meetingTimeEnd": 65100000,
+                                "meetingDays": "",
+                                "meetingDaysList": [],
+                                "building": {
+                                    "buildingCode": "0000",
+                                    "buildingName": "PENDING",
+                                    "streetAddress": "",
+                                    "latitude": 0,
+                                    "longitude": 0,
+                                    "location": null
+                                },
+                                "room": "ROOM",
+                                "examDate": 1778043600000,
+                                "monday": false,
+                                "tuesday": false,
+                                "wednesday": false,
+                                "thursday": false,
+                                "friday": false,
+                                "saturday": false,
+                                "sunday": false,
+                                "startTime": 57900000,
+                                "endTime": 65100000,
+                                "startDate": 0,
+                                "endDate": 0,
+                                "daysOfWeek": [],
+                                "sectionType": "LEC",
+                                "sectionNumber": "001",
+                                "buildingName": "PENDING",
+                                "courseId": "",
+                                "subjectCode": "",
+                                "instructors": null
+                            }
+                        ],
+                        "creditRange": "3"
+                    }
+                },
+                {
+                    "courseId": "004280",
+                    "subjectCode": "266",
+                    "name": "Introduction to Artificial Intelligence",
+                    "catalogNumber": "540",
+                    "subjectShortDescription": "COMP SCI",
+                    "courseOrigin": "ENROLLED",
+                    "selectedEnrollmentPackage": {
+                        "packageId": "1264-A1-266-540-002",
+                        "meetings": [
+                            {
+                                "meetingOrExamNumber": "1",
+                                "meetingType": "CLASS",
+                                "meetingTimeStart": 73800000,
+                                "meetingTimeEnd": 78300000,
+                                "meetingDays": "TR",
+                                "meetingDaysList": [
+                                    "TUESDAY",
+                                    "THURSDAY"
+                                ],
+                                "building": {
+                                    "buildingCode": "0470",
+                                    "buildingName": "Brogden Psychology Building",
+                                    "streetAddress": "1202 W. Johnson St.",
+                                    "latitude": 43.07258389626221,
+                                    "longitude": -89.40621825054812,
+                                    "location": null
+                                },
+                                "room": "105",
+                                "examDate": 0,
+                                "monday": false,
+                                "tuesday": false,
+                                "wednesday": false,
+                                "thursday": false,
+                                "friday": false,
+                                "saturday": false,
+                                "sunday": false,
+                                "startTime": 73800000,
+                                "endTime": 78300000,
+                                "startDate": 0,
+                                "endDate": 0,
+                                "daysOfWeek": [
+                                    "TUESDAY",
+                                    "THURSDAY"
+                                ],
+                                "sectionType": "LEC",
+                                "sectionNumber": "002",
+                                "buildingName": "Brogden Psychology Building",
+                                "courseId": "004280",
+                                "subjectCode": "266",
+                                "instructors": [
+                                    "Blerina Gkotse"
+                                ]
+                            }
+                        ],
+                        "classNumbers": [
+                            64628
+                        ],
+                        "classNumber": 64628,
+                        "packageEnrollmentStatus": {
+                            "availableSeats": 2,
+                            "waitlistTotal": 0,
+                            "status": "OPEN"
+                        },
+                        "enrollmentOptions": {
+                            "classPermissionNumberNeeded": false,
+                            "relatedClasses": [],
+                            "honors": false,
+                            "waitlist": false,
+                            "relatedClassNumber": false
+                        },
+                        "exams": [
+                            {
+                                "meetingOrExamNumber": "1",
+                                "meetingType": "EXAM",
+                                "meetingTimeStart": 66300000,
+                                "meetingTimeEnd": 73500000,
+                                "meetingDays": "",
+                                "meetingDaysList": [],
+                                "building": {
+                                    "buildingCode": "0000",
+                                    "buildingName": "PENDING",
+                                    "streetAddress": "",
+                                    "latitude": 0,
+                                    "longitude": 0,
+                                    "location": null
+                                },
+                                "room": "ROOM",
+                                "examDate": 1778130000000,
+                                "monday": false,
+                                "tuesday": false,
+                                "wednesday": false,
+                                "thursday": false,
+                                "friday": false,
+                                "saturday": false,
+                                "sunday": false,
+                                "startTime": 66300000,
+                                "endTime": 73500000,
+                                "startDate": 0,
+                                "endDate": 0,
+                                "daysOfWeek": [],
+                                "sectionType": "LEC",
+                                "sectionNumber": "002",
+                                "buildingName": "PENDING",
+                                "courseId": "",
+                                "subjectCode": "",
+                                "instructors": null
+                            }
+                        ],
+                        "creditRange": "3"
+                    }
+                },
+                {
+                    "name": "SCHEDULE-BLOCKS",
+                    "courseOrigin": "SCHEDULE-BLOCKS",
+                    "scheduleBlocks": []
+                }
+            ],
+            "hasConflicts": false,
+            "schedulingRequest": {
+                "termCode": "1264",
+                "cartItems": [],
+                "enrolled": [
+                    65210,
+                    76124,
+                    68838,
+                    68669,
+                    70679,
+                    64628
+                ],
+                "selectedPackages": {},
+                "options": {
+                    "waitlistedPackages": false,
+                    "specialGroupsPackages": false,
+                    "allowConflicts": false,
+                    "honorsOnlyPackages": false
+                }
+            }
+        }
+    ]
+}
