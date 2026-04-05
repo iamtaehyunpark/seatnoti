@@ -201,9 +201,19 @@ async function handleExport() {
         btn.innerText = 'Exported!';
     } catch (err) {
         console.error(err);
-        btn.innerText = 'Error (See console)';
+
+        // Because content scripts run in 'Isolated Worlds', native classes like `SyntaxError` can sometimes fail an `instanceof` check. 
+        // We match via the error name or message instead:
+        if (err.name === 'SyntaxError' || (err.message && err.message.includes('JSON'))) {
+            window.alert('Generate the schedule first!');
+            btn.innerText = 'No Schedule!';
+        } else {
+            btn.innerText = 'Error (See console)';
+        }
+
         btn.style.backgroundColor = '#999';
     }
+
 
     setTimeout(() => {
         btn.innerText = originalText;
