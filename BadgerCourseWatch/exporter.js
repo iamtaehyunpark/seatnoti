@@ -111,22 +111,28 @@ const DayMap = {
 };
 
 // Returns standard bounds based on Madison's usual term codes 
-function getSemesterBounds(termCode) {
+async function getSemesterBounds(termCode) {
+    const src = chrome.runtime.getURL("dictionaries.js");
+    const { TERMS } = await import(src);
+
+    const termObj = TERMS.find(t => t.value === termCode.toString());
+    const label = termObj ? termObj.label.toLowerCase() : '';
+
     const termDigit = termCode.slice(-1);
     const yy = parseInt(termCode.slice(1, 3), 10);
     // the "Year" in YY is the year of the Spring semester (end of academic year)
     const year = 2000 + yy - (termDigit === '2' ? 1 : 0);
 
     let baseStartMonth, baseStartDate, baseEndMonth, baseEndDate;
-    if (termDigit === '4') { // Spring: approx Jan 20 to May 10
-        [baseStartMonth, baseStartDate] = [0, 20]; // 0-indexed month
-        [baseEndMonth, baseEndDate] = [4, 10];
-    } else if (termDigit === '6') { // Summer: approx Jun 15 to Aug 10
+    if (label.includes('spring')) { // Spring: approx Jan 19 to April 30
+        [baseStartMonth, baseStartDate] = [0, 19]; // 0-indexed month
+        [baseEndMonth, baseEndDate] = [4, 30];
+    } else if (label.includes('summer')) { // Summer: approx Jun 15 to Aug 10
         [baseStartMonth, baseStartDate] = [5, 15];
         [baseEndMonth, baseEndDate] = [7, 10];
-    } else { // Fall: approx Sep 2 to Dec 15
-        [baseStartMonth, baseStartDate] = [8, 2];
-        [baseEndMonth, baseEndDate] = [11, 15];
+    } else { // Fall: approx Sep 1 to Dec 10
+        [baseStartMonth, baseStartDate] = [8, 1];
+        [baseEndMonth, baseEndDate] = [11, 10];
     }
     return { year, baseStartMonth, baseStartDate, baseEndMonth, baseEndDate };
 }
@@ -187,7 +193,7 @@ async function handleExport() {
         if (!response.ok) throw new Error("Failed to fetch schedule");
 
         const data = await response.json();
-        const icsString = generateIcs(data, termCode);
+        const icsString = await generateIcs(data, termCode);
 
         // Finalize standard browser Blob download
         const blob = new Blob([icsString], { type: 'text/calendar;charset=utf-8' });
@@ -222,7 +228,7 @@ async function handleExport() {
     }, 2500);
 }
 
-function generateIcs(scheduleData, termCode) {
+async function generateIcs(scheduleData, termCode) {
     let lines = [
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
@@ -247,7 +253,7 @@ function generateIcs(scheduleData, termCode) {
         "END:VTIMEZONE"
     ];
 
-    const bounds = getSemesterBounds(termCode);
+    const bounds = await getSemesterBounds(termCode);
 
     // Per RFC 5545, since DTSTART is local time with a timezone ref, UNTIL MUST be in UTC. 
     // We append 1 safety day buffer past the bounds to make sure the final class repeats.

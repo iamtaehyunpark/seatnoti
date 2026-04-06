@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Badger Course Watch",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Monitors UW-Madison course enrollment for open seats.",
   "permissions": [
     "storage",
@@ -25,9 +25,19 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://enroll.wisc.edu/*"],
-      "js": ["exporter.js"],
+      "matches": [
+        "https://enroll.wisc.edu/*"
+      ],
+      "js": [
+        "exporter.js"
+      ],
       "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["dictionaries.js"],
+      "matches": ["https://enroll.wisc.edu/*"]
     }
   ]
 }
