@@ -20,23 +20,39 @@ function injectExportButton(container) {
 
     // Style to match material design look with UW Madison red theme
     btn.style.cssText = `
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 9999;
         background-color: #c5050c; /* UW Red */
         color: white;
         border: none;
-        border-radius: 4px;
-        height: 36px;
+        border-radius: 24px;
+        padding: 0 20px;
+        height: 48px;
         font-family: Roboto, "Helvetica Neue", sans-serif;
         font-size: 14px;
         font-weight: 500;
         cursor: pointer;
-        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-        transition: background-color 0.2s;
+        opacity: 0.75;
+        box-shadow: 0 4px 8px rgba(0,0,0,.3);
+        transition: background-color 0.2s, opacity 0.2s, transform 0.2s, box-shadow 0.2s;
     `;
-    btn.onmouseover = () => btn.style.backgroundColor = '#9e040a';
-    btn.onmouseout = () => btn.style.backgroundColor = '#c5050c';
+    btn.onmouseover = () => {
+        btn.style.backgroundColor = '#9e040a';
+        btn.style.opacity = '1';
+        btn.style.transform = 'translateY(-2px)';
+        btn.style.boxShadow = '0 6px 12px rgba(0,0,0,.3)';
+    };
+    btn.onmouseout = () => {
+        btn.style.backgroundColor = '#c5050c';
+        btn.style.opacity = '0.75';
+        btn.style.transform = 'translateY(0)';
+        btn.style.boxShadow = '0 4px 8px rgba(0,0,0,.3)';
+    };
 
     btn.addEventListener('click', handleExport);
-    container.appendChild(btn);
+    document.body.appendChild(btn);
 }
 
 function getTermCode() {
