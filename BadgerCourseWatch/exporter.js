@@ -2,18 +2,23 @@
 // Inject ICS export button into schedule toolbar
 
 const observer = new MutationObserver((mutations) => {
-    if (!window.location.pathname.includes('/scheduler')) return;
+    const isScheduler = window.location.pathname.includes('/scheduler');
+    const btn = document.getElementById('export-ics-btn');
 
-    const toolbar = document.querySelector('#schedules > section > mat-toolbar');
-    if (toolbar && !document.getElementById('export-ics-btn')) {
-        injectExportButton(toolbar);
+    if (isScheduler) {
+        if (!btn) {
+            injectExportButton();
+        }
+    } else {
+        // Remove button if we've navigated away from /scheduler
+        if (btn) btn.remove();
     }
 });
 
 // Since UW Madison uses Angular, we watch the body for subtree modification to reliably catch DOM loads
 observer.observe(document.body, { childList: true, subtree: true });
 
-function injectExportButton(container) {
+function injectExportButton() {
     const btn = document.createElement('button');
     btn.id = 'export-ics-btn';
     btn.innerText = 'Export to Calendar';
