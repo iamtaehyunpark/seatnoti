@@ -80,18 +80,17 @@ function switchView(viewName) {
 // --- Helpers for Time/Date ---
 function formatTime(ms) {
   if (!ms && ms !== 0) return '';
-  const totalMinutes = Math.floor(ms / 60000);
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes % 60;
-  const ampm = hours >= 12 ? 'PM' : 'AM';
-  const displayHour = hours % 12 || 12;
-  const displayMin = minutes < 10 ? '0' + minutes : minutes;
-  return `${displayHour}:${displayMin} ${ampm}`;
+  return new Date(ms).toLocaleTimeString(undefined, {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+    timeZone: 'America/Chicago'
+  });
 }
 
 function formatDate(ms) {
   if (!ms) return '';
-  return new Date(ms).toLocaleDateString(undefined, { month: 'numeric', day: 'numeric' });
+  return new Date(ms).toLocaleDateString(undefined, { month: 'numeric', day: 'numeric', timeZone: 'America/Chicago' });
 }
 
 // --- Search Logic ---
